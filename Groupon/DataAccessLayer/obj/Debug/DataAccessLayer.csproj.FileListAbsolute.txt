@@ -1,9 +1,0 @@
-C:\Users\El\documents\visual studio 2013\Projects\Groupon\DataAccessLayer\bin\Debug\GDB.mdf
-C:\Users\El\documents\visual studio 2013\Projects\Groupon\DataAccessLayer\bin\Debug\GDB_log.ldf
-C:\Users\El\documents\visual studio 2013\Projects\Groupon\DataAccessLayer\bin\Debug\DataAccessLayer.dll
-C:\Users\El\documents\visual studio 2013\Projects\Groupon\DataAccessLayer\bin\Debug\DataAccessLayer.pdb
-C:\Users\El\documents\visual studio 2013\Projects\Groupon\DataAccessLayer\bin\Debug\nunit.framework.dll
-C:\Users\El\documents\visual studio 2013\Projects\Groupon\DataAccessLayer\bin\Debug\nunit.framework.xml
-C:\Users\El\documents\visual studio 2013\Projects\Groupon\DataAccessLayer\obj\Debug\DataAccessLayer.csprojResolveAssemblyReference.cache
-C:\Users\El\documents\visual studio 2013\Projects\Groupon\DataAccessLayer\obj\Debug\DataAccessLayer.dll
-C:\Users\El\documents\visual studio 2013\Projects\Groupon\DataAccessLayer\obj\Debug\DataAccessLayer.pdb

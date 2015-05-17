@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="C:\Users\El\Documents\Visual Studio 2013\Projects\Groupon\DataAccessLayer\bin\Debug\DataAccessLayer.dll" total="10" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2015-04-18" time="21:59:50">
+  <environment nunit-version="2.6.3.13283" clr-version="2.0.50727.5485" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="C:\Program Files (x86)\NUnit 2.6.3\bin" machine-name="EL-PC" user="El" user-domain="El-PC" />
+  <culture-info current-culture="he-IL" current-uiculture="en-US" />
+  <test-suite type="Assembly" name="C:\Users\El\Documents\Visual Studio 2013\Projects\Groupon\DataAccessLayer\bin\Debug\DataAccessLayer.dll" executed="True" result="Success" success="True" time="0.645" asserts="0">
+    <results>
+      <test-suite type="Namespace" name="DataAccessLayer" executed="True" result="Success" success="True" time="0.630" asserts="0">
+        <results>
+          <test-suite type="TestFixture" name="DatabaseTest" executed="True" result="Success" success="True" time="0.628" asserts="0">
+            <results>
+              <test-case name="DataAccessLayer.DatabaseTest.Test01_Connection_1" executed="True" result="Success" success="True" time="0.547" asserts="1" />
+              <test-case name="DataAccessLayer.DatabaseTest.Test02_Add_User_1" executed="True" result="Success" success="True" time="0.006" asserts="1" />
+              <test-case name="DataAccessLayer.DatabaseTest.Test03_Add_Same_User_Twice_1" executed="True" result="Success" success="True" time="0.007" asserts="1" />
+              <test-case name="DataAccessLayer.DatabaseTest.Test04_Add_Business_1" executed="True" result="Success" success="True" time="0.005" asserts="1" />
+              <test-case name="DataAccessLayer.DatabaseTest.Test05_Add_Business_NonExistent_ownerId_1" executed="True" result="Success" success="True" time="0.003" asserts="1" />
+              <test-case name="DataAccessLayer.DatabaseTest.Test06_Add_Businesses_Existent_ownerId_1" executed="True" result="Success" success="True" time="0.003" asserts="1" />
+              <test-case name="DataAccessLayer.DatabaseTest.Test07_Add_Catalog_Null_publisherId_1" executed="True" result="Success" success="True" time="0.003" asserts="1" />
+              <test-case name="DataAccessLayer.DatabaseTest.Test08_Add_Catalog_1" executed="True" result="Success" success="True" time="0.005" asserts="1" />
+              <test-case name="DataAccessLayer.DatabaseTest.Test09_Update_Catalog_Nonexistent_publisherId_1" executed="True" result="Success" success="True" time="0.007" asserts="1" />
+              <test-case name="DataAccessLayer.DatabaseTest.Test10_Update_Catalog_Existent_publisherId_1" executed="True" result="Success" success="True" time="0.003" asserts="1" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>
