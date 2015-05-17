@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/couponImage"
+        android:layout_margin="8dp"
+        android:background="@color/material_deep_teal_500" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="harta"
+        android:id="@+id/couponText"
+        android:layout_alignTop="@+id/couponImage"
+        android:layout_toRightOf="@+id/couponImage"
+        android:layout_toEndOf="@+id/couponImage" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="add"
+        android:id="@+id/coupon_bt"
+        android:paddingTop="20dp"
+        android:layout_alignBottom="@+id/couponImage"
+        android:layout_alignLeft="@+id/couponText"
+        android:layout_alignStart="@+id/couponText" />
+</RelativeLayout>

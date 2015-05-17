@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Groupon</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_signup_activity">Signup_activity</string>
+    <string name="title_activity_user_activity">User_activity</string>
+    <string name="title_activity_coupon_list_activity">CouponList_activity</string>
+    <string name="title_activity_view_orders_activity">view_orders_activity</string>
+</resources>
