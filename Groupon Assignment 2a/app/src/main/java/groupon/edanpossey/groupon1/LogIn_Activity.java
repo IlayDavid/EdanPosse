@@ -17,6 +17,7 @@ public class LogIn_Activity extends ActionBarActivity {
     EditText passText;
     Button loginBtn;
     Button signupBtn;
+    ObjectsHolder objectsHolder;
 
 
     @Override
@@ -27,9 +28,9 @@ public class LogIn_Activity extends ActionBarActivity {
         passText = (EditText) findViewById(R.id.PassText);
         loginBtn = (Button) findViewById(R.id.LogIn_bt);
         signupBtn = (Button) findViewById(R.id.SignUp_bt);
-
-
-
+        this.getApplication().getApplicationContext();
+        objectsHolder = ObjectsHolder.getInstance(this.getApplication().getApplicationContext());
+        System.out.println(objectsHolder == null);
     }
 
 
@@ -39,7 +40,6 @@ public class LogIn_Activity extends ActionBarActivity {
 
         Intent i = new Intent(this,User_activity.class);
         startActivity(i);
-
     }
 
 
@@ -49,7 +49,6 @@ public class LogIn_Activity extends ActionBarActivity {
 
         Intent i = new Intent(this,Signup_activity.class);
         startActivity(i);
-
     }
 
 

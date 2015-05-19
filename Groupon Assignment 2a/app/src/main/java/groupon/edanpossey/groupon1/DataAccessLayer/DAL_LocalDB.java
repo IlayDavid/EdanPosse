@@ -9,22 +9,22 @@ import java.sql.Date;
 import java.util.Collection;
 import java.util.LinkedList;
 
-import Entities.AccessLevel;
-import Entities.Business;
-import Entities.CatalogItem;
-import Entities.Coupon;
-import Entities.Order;
-import Entities.User;
+import groupon.edanpossey.groupon1.Entities.AccessLevel;
+import groupon.edanpossey.groupon1.Entities.Business;
+import groupon.edanpossey.groupon1.Entities.CatalogItem;
+import groupon.edanpossey.groupon1.Entities.Coupon;
+import groupon.edanpossey.groupon1.Entities.Order;
+import groupon.edanpossey.groupon1.Entities.User;
 
 /**
- * Created by IlayDavid on 13/05/2015.
+ * Created by IlayDavid on 17/05/2015.
  */
 public class DAL_LocalDB implements IDAL {
     private GrouponDBHelper dbHelper;
     private SQLiteDatabase myDb;
 
 
-    public DAL_LocalDB(Context context) {
+    protected DAL_LocalDB(Context context) {
         dbHelper = GrouponDBHelper.getInstance(context.getApplicationContext());
         myDb = null;
     }

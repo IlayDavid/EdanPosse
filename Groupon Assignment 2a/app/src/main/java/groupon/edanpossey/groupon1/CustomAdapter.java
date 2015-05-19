@@ -1,7 +1,7 @@
 package groupon.edanpossey.groupon1;
 
 /**
- * Created by orija_000 on 3/2/2015.
+ * Created by IlayDavid on 17/05/2015.
  */
 
 import android.content.Context;

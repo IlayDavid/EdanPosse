@@ -2,14 +2,14 @@ package groupon.edanpossey.groupon1.DataAccessLayer;
 
 import java.util.Collection;
 
-import Entities.Business;
-import Entities.CatalogItem;
-import Entities.Coupon;
-import Entities.Order;
-import Entities.User;
+import groupon.edanpossey.groupon1.Entities.Business;
+import groupon.edanpossey.groupon1.Entities.CatalogItem;
+import groupon.edanpossey.groupon1.Entities.Coupon;
+import groupon.edanpossey.groupon1.Entities.Order;
+import groupon.edanpossey.groupon1.Entities.User;
 
 /**
- * Created by IlayDavid on 13/05/2015.
+ * Created by IlayDavid on 17/05/2015.
  */
 public interface IDAL {
     //==============================================================================================

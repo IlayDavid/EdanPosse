@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 
 /**
- * Created by IlayDavid on 14/05/2015.
+ * Created by IlayDavid on 17/05/2015.
  */
 public class GrouponDBHelper extends SQLiteOpenHelper {
     private static GrouponDBHelper instance;

@@ -6,18 +6,19 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import DataAccessLayer.DAL_LocalDB;
-import DataAccessLayer.IDAL;
-import Entities.Business;
-import Entities.CatalogItem;
-import Entities.Coupon;
-import Entities.Order;
-import Entities.User;
+import groupon.edanpossey.groupon1.DataAccessLayer.DAL_LocalDB;
+import groupon.edanpossey.groupon1.DataAccessLayer.DataAccessLayerFactory;
+import groupon.edanpossey.groupon1.DataAccessLayer.IDAL;
+import groupon.edanpossey.groupon1.Entities.Business;
+import groupon.edanpossey.groupon1.Entities.CatalogItem;
+import groupon.edanpossey.groupon1.Entities.Coupon;
+import groupon.edanpossey.groupon1.Entities.Order;
+import groupon.edanpossey.groupon1.Entities.User;
 
 /**
- * Created by Owner on 17/05/2015.
+ * Created by IlayDavid on 17/05/2015.
  */
-public class BL_LocalDB {
+public class BL_LocalDB implements IBL{
     private IDAL myDal;
     private Map<String, User> userMap;
     private Map<String, Business> businessMap;
@@ -28,16 +29,17 @@ public class BL_LocalDB {
     //==============================================================================================
     //region Constructors
     //==============================================================================================
-    public BL_LocalDB(Context context) {
-        myDal = new DAL_LocalDB(context);
+    protected BL_LocalDB(Context context) {
+        myDal = DataAccessLayerFactory.getDAL(DataAccessLayerFactory.DALType.LocalDB , context);
         userMap = new LinkedHashMap<String, User>();
         businessMap = new LinkedHashMap<String, Business>();
         catalogItemMap = new LinkedHashMap<Long, CatalogItem>();
         couponMap = new LinkedHashMap<Long, Coupon>();
         orderMap = new LinkedHashMap<Long, Order>();
 
-        initializeMaps();
+        initialize();
     }
+
     //==============================================================================================
     //endregion Constructors
     //==============================================================================================
@@ -45,6 +47,12 @@ public class BL_LocalDB {
     //==============================================================================================
     //region Initializers
     //==============================================================================================
+
+    private void initialize() {
+        myDal.connectDatabase();
+        initializeMaps();
+    }
+
     private void initializeMaps() {
         initializeUserMap();
         initializeBusinessMap();
