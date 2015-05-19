@@ -9,6 +9,7 @@ import java.util.Map;
 import groupon.edanpossey.groupon1.DataAccessLayer.DAL_LocalDB;
 import groupon.edanpossey.groupon1.DataAccessLayer.DataAccessLayerFactory;
 import groupon.edanpossey.groupon1.DataAccessLayer.IDAL;
+import groupon.edanpossey.groupon1.Entities.AccessLevel;
 import groupon.edanpossey.groupon1.Entities.Business;
 import groupon.edanpossey.groupon1.Entities.CatalogItem;
 import groupon.edanpossey.groupon1.Entities.Coupon;
@@ -50,6 +51,8 @@ public class BL_LocalDB implements IBL{
 
     private void initialize() {
         myDal.connectDatabase();
+        //User user = new User("admin", "adminpass", "admin@groupon.com", "0504442966", AccessLevel.Administrator, null);
+        //myDal.insertUser(user);
         initializeMaps();
     }
 

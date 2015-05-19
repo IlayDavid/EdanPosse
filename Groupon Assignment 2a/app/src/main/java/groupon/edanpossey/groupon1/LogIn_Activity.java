@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import groupon.edanpossey.groupon1.Entities.User;
+
 
 public class LogIn_Activity extends ActionBarActivity {
 
@@ -35,11 +37,19 @@ public class LogIn_Activity extends ActionBarActivity {
 
 
     public void Login(View view) {
-        String msg = userText.getText().toString();
-        Toast.makeText(getApplicationContext(), "LogIn Button" + msg, Toast.LENGTH_SHORT).show();
+        String username = userText.getText().toString();
+        String password = passText.getText().toString();
 
-        Intent i = new Intent(this,User_activity.class);
-        startActivity(i);
+        User currentUser = objectsHolder.getBl().login(username, password);
+        if(currentUser != null){
+            objectsHolder.setCurrentUser(currentUser);
+            Intent i = new Intent(this,User_activity.class);
+            startActivity(i);
+        }
+        else{
+            Toast.makeText(getApplicationContext(), "Wrong username or password.", Toast.LENGTH_LONG).show();
+        }
+
     }
 
 

@@ -136,7 +136,7 @@ public class DAL_LocalDB implements IDAL {
         if (user.getPhoneNumber() != null)
             cv.put(GrouponDBHelper.USERS_COLUMN_PHONE, user.getPhoneNumber());
         if (user.getAccessLevel() != null)
-            cv.put(GrouponDBHelper.USERS_COLUMN_PERMISSION, user.getAccessLevel().ordinal());
+            cv.put(GrouponDBHelper.USERS_COLUMN_PERMISSION, user.getAccessLevel().toString());
 
         return myDb.insert(GrouponDBHelper.USERS_TABLE_NAME, null, cv);
     }
@@ -290,7 +290,6 @@ public class DAL_LocalDB implements IDAL {
                 User user = new User(id, password, email, phone, accessLevel, null);
                 users.add(user);
                 cursorUsers.moveToNext();
-                cursorUsers.moveToNext();
             }
         }
 
@@ -311,6 +310,8 @@ public class DAL_LocalDB implements IDAL {
                 User user = new User(id, null, null, null, null, null);
                 Business business = new Business(user, businessName, address, city, description);
                 businesses.add(business);
+
+                cursorBusiness.moveToNext();
             }
         }
 
@@ -337,6 +338,8 @@ public class DAL_LocalDB implements IDAL {
                 Coupon coupon = new Coupon(couponCode, null, null);
                 Order order = new Order(orderCode, status, user, catalogItem, coupon);
                 orders.add(order);
+
+                cursorOrders.moveToNext();
             }
         }
 
@@ -355,6 +358,8 @@ public class DAL_LocalDB implements IDAL {
                 CatalogItem catalogItem = new CatalogItem(catalogNumber, null, null, null, null, -1, -1, -1, -1, null);
                 Coupon coupon = new Coupon(couponCode, status, catalogItem);
                 coupons.add(coupon);
+
+                cursorCoupons.moveToNext();
             }
         }
 
@@ -380,6 +385,8 @@ public class DAL_LocalDB implements IDAL {
                 Business business = new Business(null, businessName, null, null, null);
                 CatalogItem catalogItem = new CatalogItem(catalogNumber, business, category, description, status, rating, averageRating, originalPrice, priceAfterDiscount, date);
                 catalogItems.add(catalogItem);
+
+                cursorCatalog.moveToNext();
             }
         }
 

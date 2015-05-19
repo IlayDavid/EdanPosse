@@ -1,8 +1,11 @@
 package groupon.edanpossey.groupon1.DataAccessLayer;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import groupon.edanpossey.groupon1.Entities.AccessLevel;
 
 
 /**
@@ -89,8 +92,16 @@ public class GrouponDBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(
                 "CREATE TABLE Users " +
-                        "(id TEXT PRIMARY KEY, password TEXT, email TEXT, phone TEXT, permission INTEGER)"
+                        "(id TEXT PRIMARY KEY, password TEXT, email TEXT, phone TEXT, permission TEXT)"
         );
+        ContentValues cv = new ContentValues();
+        cv.put(USERS_COLUMN_ID, "admin");
+        cv.put(USERS_COLUMN_PASSWORD, "adminpass");
+        cv.put(USERS_COLUMN_EMAIL, "email@groupon.com");
+        cv.put(USERS_COLUMN_PHONE, "0504442966");
+        cv.put(USERS_COLUMN_PERMISSION, AccessLevel.Administrator.toString());
+        db.insert(USERS_TABLE_NAME, null, cv);
+
         db.execSQL(
                 "CREATE TABLE Businesses " +
                         "(" +
