@@ -27,7 +27,7 @@ public class LogIn_Activity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in_);
         userText = (EditText) findViewById(R.id.NameText);
-        passText = (EditText) findViewById(R.id.PassText);
+        passText = (EditText) findViewById(R.id.passText);
         loginBtn = (Button) findViewById(R.id.LogIn_bt);
         signupBtn = (Button) findViewById(R.id.SignUp_bt);
         this.getApplication().getApplicationContext();
@@ -54,9 +54,6 @@ public class LogIn_Activity extends ActionBarActivity {
 
 
     public void Signup(View view) {
-        String msg = passText.getText().toString();
-        Toast.makeText(getApplicationContext(), "Signup Button" + msg, Toast.LENGTH_SHORT).show();
-
         Intent i = new Intent(this,Signup_activity.class);
         startActivity(i);
     }

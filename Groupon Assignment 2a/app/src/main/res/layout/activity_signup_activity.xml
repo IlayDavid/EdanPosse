@@ -22,7 +22,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/PassText"
+        android:id="@+id/passText"
         android:layout_marginTop="33dp"
         android:width="200dp"
         android:layout_below="@+id/nameText"
@@ -36,9 +36,9 @@
         android:id="@+id/phoneText"
         android:layout_marginTop="33dp"
         android:width="200dp"
-        android:layout_below="@+id/PassText"
-        android:layout_alignLeft="@+id/PassText"
-        android:layout_alignStart="@+id/PassText"
+        android:layout_below="@+id/passText"
+        android:layout_alignLeft="@+id/passText"
+        android:layout_alignStart="@+id/passText"
         android:text="cellphone number"
         android:phoneNumber="true" />
 
