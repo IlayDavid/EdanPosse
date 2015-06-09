@@ -11,11 +11,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.logging.Logger;
 
 /**
  * Created by IlayDavid on 17/05/2015.
@@ -81,11 +83,12 @@ public class ListFragment extends Fragment {
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Log.i("Harta", "helo");
+                        System.out.println("hohohoho");
                         String name = String.valueOf(parent.getItemAtPosition(position));
-                        /*
-                        if (name.equals("DSA"))
-                            activityCommander.getService().incVal();
-                         */
+                        Logger l = Logger.getLogger("harta");
+                        l.info("hello");
+                        Toast.makeText(getActivity().getApplicationContext(), "Ori is meffagger.", Toast.LENGTH_LONG).show();
                     }
                 });
 

@@ -20,6 +20,8 @@ class CustomAdapter extends ArrayAdapter<String> {
         super(context, R.layout.custom_row ,names);
     }
 
+
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater costumeInflater = LayoutInflater.from(getContext());

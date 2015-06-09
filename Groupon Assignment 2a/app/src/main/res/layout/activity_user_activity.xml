@@ -10,38 +10,69 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="view coupon"
-        android:id="@+id/viewCoupon_bt"
-        android:layout_alignParentTop="true"
+        android:text="View Coupons"
+        android:id="@+id/viewCoupons_bt"
+        android:width="120dp"
+        android:onClick="viewCoupons"
+        android:layout_alignBottom="@+id/viewOrders_bt"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="31dp"
-        android:layout_marginEnd="31dp"
-        android:layout_marginTop="27dp"
-        android:width="120dp"
-        android:onClick="viewCoupon" />
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="search"
+        android:text="Search Coupons"
         android:id="@+id/searchCoupon_bt"
-        android:layout_marginTop="38dp"
-        android:layout_below="@+id/viewCoupon_bt"
-        android:layout_alignRight="@+id/viewCoupon_bt"
-        android:layout_alignEnd="@+id/viewCoupon_bt"
         android:width="120dp"
-        android:onClick="searchCoupon" />
+        android:onClick="searchCoupon"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="view orders"
+        android:text="View Orders"
         android:id="@+id/viewOrders_bt"
-        android:layout_marginTop="34dp"
-        android:layout_below="@+id/searchCoupon_bt"
+        android:width="120dp"
+        android:onClick="viewOrders"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="109dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editText"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/searchCoupon_bt"
+        android:layout_toEndOf="@+id/searchCoupon_bt" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Categories"
+        android:id="@+id/textView"
+        android:layout_alignBottom="@+id/editText"
+        android:layout_alignTop="@+id/editText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignRight="@+id/searchCoupon_bt"
         android:layout_alignEnd="@+id/searchCoupon_bt"
-        android:width="120dp"
-        android:onClick="viewOrders" />
+        android:textStyle="bold|italic"
+        android:gravity="center_vertical|center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Radius"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>

@@ -19,14 +19,4 @@
         android:layout_alignTop="@+id/couponImage"
         android:layout_toRightOf="@+id/couponImage"
         android:layout_toEndOf="@+id/couponImage" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="add"
-        android:id="@+id/coupon_bt"
-        android:paddingTop="20dp"
-        android:layout_alignBottom="@+id/couponImage"
-        android:layout_alignLeft="@+id/couponText"
-        android:layout_alignStart="@+id/couponText" />
 </RelativeLayout>

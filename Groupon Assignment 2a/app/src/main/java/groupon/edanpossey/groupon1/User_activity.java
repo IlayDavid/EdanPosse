@@ -20,13 +20,13 @@ public class User_activity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_activity);
-        viewCoupon = (Button) findViewById(R.id.viewCoupon_bt);
+        viewCoupon = (Button) findViewById(R.id.viewCoupons_bt);
         viewOrders = (Button) findViewById(R.id.viewOrders_bt);
         searchCoupon = (Button) findViewById(R.id.searchCoupon_bt);
     }
 
 
-    public void viewCoupon(View view) {
+    public void viewCoupons(View view) {
 
 
         Intent i = new Intent(this,ViewOrders_activity.class);
