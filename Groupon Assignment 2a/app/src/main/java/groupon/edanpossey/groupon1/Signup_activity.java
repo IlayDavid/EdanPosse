@@ -47,15 +47,25 @@ public class Signup_activity extends ActionBarActivity {
         String phone = phoneText.getText().toString();
         AccessLevel accessLevel = AccessLevel.User;
 
-        User user = new User(username, password, email, phone, accessLevel, null);
-        if(objectsHolder.getBl().newUser(user)){
-            objectsHolder.setCurrentUser(user);
-            Intent i = new Intent(this,User_activity.class);
-            startActivity(i);
-            finish();
+        boolean missingParameters = (username.equals("") || username == null);
+        missingParameters = missingParameters || (password.equals("") || password == null);
+        missingParameters = missingParameters || (email.equals("") || email == null);
+        missingParameters = missingParameters || (phone.equals("") || phone == null);
+
+        if(missingParameters){
+            Toast.makeText(getApplicationContext(), "Missing parameters.", Toast.LENGTH_LONG).show();
         }
         else{
-            Toast.makeText(getApplicationContext(), "Unavailable username", Toast.LENGTH_LONG).show();
+            User user = new User(username, password, email, phone, accessLevel, null);
+            if(objectsHolder.getBl().newUser(user)){
+                objectsHolder.setCurrentUser(user);
+                Intent i = new Intent(this,User_activity.class);
+                startActivity(i);
+                finish();
+            }
+            else{
+                Toast.makeText(getApplicationContext(), "Unavailable username", Toast.LENGTH_LONG).show();
+            }
         }
     }
 

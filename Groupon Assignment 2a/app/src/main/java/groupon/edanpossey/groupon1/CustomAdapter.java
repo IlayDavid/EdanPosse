@@ -16,8 +16,8 @@ import java.util.ArrayList;
 
 class CustomAdapter extends ArrayAdapter<String> {
 
-    CustomAdapter(Context context, ArrayList<String> names) {
-        super(context, R.layout.custom_row ,names);
+    CustomAdapter(Context context, ArrayList<String> orderCodes) {
+        super(context, R.layout.custom_row_view_order, orderCodes);
     }
 
 
@@ -25,10 +25,10 @@ class CustomAdapter extends ArrayAdapter<String> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater costumeInflater = LayoutInflater.from(getContext());
-        View customView = costumeInflater.inflate(R.layout.custom_row, parent, false);
+        View customView = costumeInflater.inflate(R.layout.custom_row_view_order, parent, false);
 
         String singleNameItem = getItem(position);
-        TextView couponText = (TextView) customView.findViewById(R.id.couponText);
+        TextView couponText = (TextView) customView.findViewById(R.id.orderNumberTextView);
         ImageView couponImage = (ImageView) customView.findViewById(R.id.couponImage);
 
         couponText.setText(singleNameItem);

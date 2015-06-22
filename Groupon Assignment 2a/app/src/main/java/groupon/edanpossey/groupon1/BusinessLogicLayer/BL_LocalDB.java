@@ -30,6 +30,7 @@ public class BL_LocalDB implements IBL{
     //==============================================================================================
     //region Constructors
     //==============================================================================================
+
     protected BL_LocalDB(Context context) {
         myDal = DataAccessLayerFactory.getDAL(DataAccessLayerFactory.DALType.LocalDB , context);
         userMap = new LinkedHashMap<String, User>();

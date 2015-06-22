@@ -9,12 +9,13 @@ import java.util.LinkedList;
  * Created by Owner on 16/05/2015.
  */
 public class CatalogItem {
-    public enum CatalogItemStatus{
+    public enum CatalogItemStatus {
         PendingApproval, Approved
     }
+
     private Business publishedBy;
     private long catalogNumber, ratings, sumOfRatings;
-    private String category, description;
+    private String name, category, description;
     private CatalogItemStatus status;
     private double originalPrice, priceAfterDiscount;
     private Date expirationDate;
@@ -28,6 +29,7 @@ public class CatalogItem {
     public CatalogItem() {
         publishedBy = null;
         catalogNumber = -1;
+        name = null;
         category = null;
         description = null;
         status = null;
@@ -39,11 +41,28 @@ public class CatalogItem {
         coupons = null;
         orders = null;
     }
-
-    public CatalogItem(long catalogNumber, Business publishedBy, String category, String description,
+    public CatalogItem(Business publishedBy, String name, String category, String description,
+                       CatalogItemStatus status, long ratings, long sumOfRatings, double originalPrice, double priceAfterDiscount, Date expirationDate) {
+        this.catalogNumber = -1;
+        this.publishedBy = publishedBy;
+        this.catalogNumber = catalogNumber;
+        this.name = name;
+        this.category = category;
+        this.description = description;
+        this.status = status;
+        this.ratings = ratings;
+        this.sumOfRatings = sumOfRatings;
+        this.originalPrice = originalPrice;
+        this.priceAfterDiscount = priceAfterDiscount;
+        this.expirationDate = expirationDate;
+        this.coupons = new LinkedList<Coupon>();
+        this.orders = new LinkedList<Order>();
+    }
+    public CatalogItem(long catalogNumber, Business publishedBy, String name, String category, String description,
                        CatalogItemStatus status, long ratings, long sumOfRatings, double originalPrice, double priceAfterDiscount, Date expirationDate) {
         this.publishedBy = publishedBy;
         this.catalogNumber = catalogNumber;
+        this.name = name;
         this.category = category;
         this.description = description;
         this.status = status;
@@ -67,7 +86,6 @@ public class CatalogItem {
     public Business getPublishedBy() {
         return publishedBy;
     }
-
     public void setPublishedBy(Business publishedBy) {
         this.publishedBy = publishedBy;
     }
@@ -75,15 +93,20 @@ public class CatalogItem {
     public long getCatalogNumber() {
         return catalogNumber;
     }
-
     public void setCatalogNumber(long catalogNumber) {
         this.catalogNumber = catalogNumber;
+    }
+
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getCategory() {
         return category;
     }
-
     public void setCategory(String category) {
         this.category = category;
     }
@@ -91,7 +114,6 @@ public class CatalogItem {
     public String getDescription() {
         return description;
     }
-
     public void setDescription(String description) {
         this.description = description;
     }
@@ -99,7 +121,6 @@ public class CatalogItem {
     public CatalogItemStatus getStatus() {
         return status;
     }
-
     public void setStatus(CatalogItemStatus status) {
         this.status = status;
     }
@@ -107,11 +128,13 @@ public class CatalogItem {
     public double getOriginalPrice() {
         return originalPrice;
     }
+    public void setOriginalPrice(double originalPrice) {
+        this.originalPrice = originalPrice;
+    }
 
     public long getRatings() {
         return ratings;
     }
-
     public void setRatings(long ratings) {
         this.ratings = ratings;
     }
@@ -119,19 +142,13 @@ public class CatalogItem {
     public long getSumOfRatings() {
         return sumOfRatings;
     }
-
     public void setSumOfRatings(long sumOfRatings) {
         this.sumOfRatings = sumOfRatings;
-    }
-
-    public void setOriginalPrice(double originalPrice) {
-        this.originalPrice = originalPrice;
     }
 
     public double getPriceAfterDiscount() {
         return priceAfterDiscount;
     }
-
     public void setPriceAfterDiscount(double priceAfterDiscount) {
         this.priceAfterDiscount = priceAfterDiscount;
     }
@@ -139,7 +156,6 @@ public class CatalogItem {
     public Date getExpirationDate() {
         return expirationDate;
     }
-
     public void setExpirationDate(Date expirationDate) {
         this.expirationDate = expirationDate;
     }
@@ -147,9 +163,17 @@ public class CatalogItem {
     public Collection<Coupon> getCoupons() {
         return coupons;
     }
-
     public Collection<Order> getOrders() {
         return orders;
+    }
+    public Collection<Order> getPendingOrders() {
+        Collection<Order> pendingOrders = new LinkedList<Order>();
+        for (Order order : orders) {
+            if (order.getOrderStatus() == Order.OrderStatus.Pending)
+                pendingOrders.add(order);
+        }
+
+        return pendingOrders;
     }
 
     //==============================================================================================
@@ -165,11 +189,9 @@ public class CatalogItem {
     public boolean addCoupon(Coupon coupon) {
         return this.coupons.add(coupon);
     }
-
     public boolean removeCoupon(Coupon coupon) {
         return this.coupons.remove(coupon);
     }
-
     public boolean removeCoupon(long couponCode) {
         for (Iterator<Coupon> iter = this.coupons.iterator(); iter.hasNext(); ) {
             Coupon currentCoupon = iter.next();
@@ -186,11 +208,9 @@ public class CatalogItem {
     public boolean addOrder(Order order) {
         return this.orders.add(order);
     }
-
     public boolean removeOrder(Order order) {
         return this.orders.remove(order);
     }
-
     public boolean removeOrder(long orderCode) {
         for (Iterator<Order> iter = this.orders.iterator(); iter.hasNext(); ) {
             Order currentOrder = iter.next();
@@ -198,16 +218,6 @@ public class CatalogItem {
                 return removeOrder(currentOrder);
         }
         return false;
-    }
-
-    public Collection<Order> getPendingOrders(){
-        Collection<Order> pendingOrders = new LinkedList<Order>();
-        for(Order order: orders){
-            if(order.getOrderStatus() == Order.OrderStatus.Pending)
-                pendingOrders.add(order);
-        }
-
-        return pendingOrders;
     }
     //endregion Pending Orders
     //----------------

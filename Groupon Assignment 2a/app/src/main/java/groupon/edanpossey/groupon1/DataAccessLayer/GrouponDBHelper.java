@@ -39,6 +39,7 @@ public class GrouponDBHelper extends SQLiteOpenHelper {
     public static final String CATALOG_TABLE_NAME = "Catalog";
     public static final String CATALOG_COLUMN_BUSINESSNAME = "businessName";        // References Businesses.businessName
     public static final String CATALOG_COLUMN_CATALOGNUMBER = "catalogNumber";      // Primary Key
+    public static final String CATALOG_COLUMN_CATALONGITEMNAME = "catalogItemName";
     public static final String CATALOG_COLUMN_CATEGORY = "category";
     public static final String CATALOG_COLUMN_DESCRIPTION = "description";
     public static final String CATALOG_COLUMN_STATUS = "status";
@@ -48,9 +49,10 @@ public class GrouponDBHelper extends SQLiteOpenHelper {
     public static final String CATALOG_COLUMN_PRICEAFTERDISCOUNT = "priceAfterDiscount";
     public static final String CATALOG_COLUMN_EXPIRATIONDATE = "expirationDate";
     public static final String[] CATALOG_COLUMNS = {CATALOG_COLUMN_CATALOGNUMBER,
-            CATALOG_COLUMN_CATEGORY, CATALOG_COLUMN_DESCRIPTION, CATALOG_COLUMN_STATUS,
-            CATALOG_COLUMN_RATINGS, CATALOG_COLUMN_SUMOFRATINGS, CATALOG_COLUMN_ORIGINALPRICE,
-            CATALOG_COLUMN_PRICEAFTERDISCOUNT, CATALOG_COLUMN_EXPIRATIONDATE};
+            CATALOG_COLUMN_CATEGORY,CATALOG_COLUMN_CATALONGITEMNAME, CATALOG_COLUMN_DESCRIPTION,
+            CATALOG_COLUMN_STATUS, CATALOG_COLUMN_RATINGS, CATALOG_COLUMN_SUMOFRATINGS,
+            CATALOG_COLUMN_ORIGINALPRICE, CATALOG_COLUMN_PRICEAFTERDISCOUNT,
+            CATALOG_COLUMN_EXPIRATIONDATE};
 
     public static final String ORDERS_TABLE_NAME = "Orders";
     public static final String ORDERS_COLUMN_ID = "id";                             // References Users.id

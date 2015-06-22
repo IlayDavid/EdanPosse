@@ -87,6 +87,8 @@ public class DAL_LocalDB implements IDAL {
             cv.put(GrouponDBHelper.CATALOG_COLUMN_BUSINESSNAME, catalogItem.getPublishedBy().getBusinessName());
         if (catalogItem.getCategory() != null)
             cv.put(GrouponDBHelper.CATALOG_COLUMN_CATEGORY, catalogItem.getCategory());
+        if(catalogItem.getName() != null)
+            cv.put(GrouponDBHelper.CATALOG_COLUMN_CATALONGITEMNAME, catalogItem.getName());
         if (catalogItem.getDescription() != null)
             cv.put(GrouponDBHelper.CATALOG_COLUMN_DESCRIPTION, catalogItem.getDescription());
         if (catalogItem.getStatus() != null)
@@ -333,7 +335,7 @@ public class DAL_LocalDB implements IDAL {
                 String id = cursorOrders.getString(cursorOrders.getColumnIndex(GrouponDBHelper.ORDERS_COLUMN_ID));
                 Order.OrderStatus status = Order.OrderStatus.valueOf(cursorOrders.getString(cursorOrders.getColumnIndex(GrouponDBHelper.ORDERS_COLUMN_STATUS)));
 
-                CatalogItem catalogItem = new CatalogItem(catalogNumber, null, null, null, null, -1, -1, -1, -1, null);
+                CatalogItem catalogItem = new CatalogItem(catalogNumber, null, null, null, null, null, -1, -1, -1, -1, null);
                 User user = new User(id, null, null, null, null, null);
                 Coupon coupon = new Coupon(couponCode, null, null);
                 Order order = new Order(orderCode, status, user, catalogItem, coupon);
@@ -355,7 +357,7 @@ public class DAL_LocalDB implements IDAL {
                 long catalogNumber = cursorCoupons.getLong(cursorCoupons.getColumnIndex(GrouponDBHelper.COUPONS_COLUMN_CATALOGNUMBER));
                 Coupon.CouponStatus status = Coupon.CouponStatus.valueOf(cursorCoupons.getString(cursorCoupons.getColumnIndex(GrouponDBHelper.COUPONS_COLUMN_STATUS)));
 
-                CatalogItem catalogItem = new CatalogItem(catalogNumber, null, null, null, null, -1, -1, -1, -1, null);
+                CatalogItem catalogItem = new CatalogItem(catalogNumber, null, null, null, null, null, -1, -1, -1, -1, null);
                 Coupon coupon = new Coupon(couponCode, status, catalogItem);
                 coupons.add(coupon);
 
@@ -373,6 +375,7 @@ public class DAL_LocalDB implements IDAL {
             while (cursorCatalog.isAfterLast() == false) {
                 long catalogNumber = cursorCatalog.getLong(cursorCatalog.getColumnIndex(GrouponDBHelper.CATALOG_COLUMN_CATALOGNUMBER));
                 String businessName = cursorCatalog.getString(cursorCatalog.getColumnIndex(GrouponDBHelper.CATALOG_COLUMN_BUSINESSNAME));
+                String catalogItemName = cursorCatalog.getString(cursorCatalog.getColumnIndex(GrouponDBHelper.CATALOG_COLUMN_CATALONGITEMNAME));
                 String category = cursorCatalog.getString(cursorCatalog.getColumnIndex(GrouponDBHelper.CATALOG_COLUMN_CATEGORY));
                 String description = cursorCatalog.getString(cursorCatalog.getColumnIndex(GrouponDBHelper.CATALOG_COLUMN_DESCRIPTION));
                 double originalPrice = cursorCatalog.getDouble(cursorCatalog.getColumnIndex(GrouponDBHelper.CATALOG_COLUMN_ORIGINALPRICE));
@@ -383,7 +386,8 @@ public class DAL_LocalDB implements IDAL {
                 Date date = Date.valueOf(cursorCatalog.getString(cursorCatalog.getColumnIndex(GrouponDBHelper.CATALOG_COLUMN_EXPIRATIONDATE)));
 
                 Business business = new Business(null, businessName, null, null, null);
-                CatalogItem catalogItem = new CatalogItem(catalogNumber, business, category, description, status, rating, averageRating, originalPrice, priceAfterDiscount, date);
+                CatalogItem catalogItem = new CatalogItem(catalogNumber, business, catalogItemName, category,
+                        description, status, rating, averageRating, originalPrice, priceAfterDiscount, date);
                 catalogItems.add(catalogItem);
 
                 cursorCatalog.moveToNext();

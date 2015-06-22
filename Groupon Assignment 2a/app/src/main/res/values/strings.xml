@@ -6,4 +6,8 @@
     <string name="title_activity_user_activity">User_activity</string>
     <string name="title_activity_coupon_list_activity">CouponList_activity</string>
     <string name="title_activity_view_orders_activity">view_orders_activity</string>
+    <string name="title_activity_add_coupon">add_coupon</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_add_catalog_item">AddCatalogItem</string>
 </resources>

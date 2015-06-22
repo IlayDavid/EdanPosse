@@ -36,6 +36,10 @@
             android:name=".ViewOrders_activity"
             android:label="@string/title_activity_view_orders_activity" >
         </activity>
+        <activity
+            android:name=".AddCatalogItem"
+            android:label="@string/title_activity_add_catalog_item" >
+        </activity>
     </application>
 
 </manifest>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/orderStatusImageView">
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="80dp"
+        android:id="@+id/couponImage"
+        android:background="@color/material_deep_teal_200"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="8dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Order Number"
+        android:id="@+id/orderNumberTextView"
+        android:layout_alignTop="@+id/couponImage"
+        android:layout_toRightOf="@+id/couponImage"
+        android:layout_toEndOf="@+id/couponImage"
+        android:layout_marginTop="26dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Status"
+        android:id="@+id/orderStatusTextView"
+        android:layout_alignTop="@+id/orderNumberTextView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="43dp"
+        android:layout_marginEnd="43dp" />
+
+</RelativeLayout>
