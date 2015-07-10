@@ -1,4 +1,4 @@
-package groupon.edanpossey.groupon1.DataAccessLayer;
+package groupon.edanpossey.groupon1.Client.DataAccessLayer;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -19,12 +19,12 @@ import groupon.edanpossey.groupon1.Entities.User;
 /**
  * Created by IlayDavid on 17/05/2015.
  */
-public class DAL_LocalDB implements IDAL {
+public class DataAccessLayerFacadeImpl implements DataAccessLayerFacade {
     private GrouponDBHelper dbHelper;
     private SQLiteDatabase myDb;
 
 
-    protected DAL_LocalDB(Context context) {
+    protected DataAccessLayerFacadeImpl(Context context) {
         dbHelper = GrouponDBHelper.getInstance(context.getApplicationContext());
         myDb = null;
     }
@@ -335,7 +335,7 @@ public class DAL_LocalDB implements IDAL {
                 String id = cursorOrders.getString(cursorOrders.getColumnIndex(GrouponDBHelper.ORDERS_COLUMN_ID));
                 Order.OrderStatus status = Order.OrderStatus.valueOf(cursorOrders.getString(cursorOrders.getColumnIndex(GrouponDBHelper.ORDERS_COLUMN_STATUS)));
 
-                CatalogItem catalogItem = new CatalogItem(catalogNumber, null, null, null, null, null, -1, -1, -1, -1, null);
+                CatalogItem catalogItem = new CatalogItem(catalogNumber, null, null, null, null, null, -1, -1, -1, -1, null, null);
                 User user = new User(id, null, null, null, null, null);
                 Coupon coupon = new Coupon(couponCode, null, null);
                 Order order = new Order(orderCode, status, user, catalogItem, coupon);
@@ -357,7 +357,7 @@ public class DAL_LocalDB implements IDAL {
                 long catalogNumber = cursorCoupons.getLong(cursorCoupons.getColumnIndex(GrouponDBHelper.COUPONS_COLUMN_CATALOGNUMBER));
                 Coupon.CouponStatus status = Coupon.CouponStatus.valueOf(cursorCoupons.getString(cursorCoupons.getColumnIndex(GrouponDBHelper.COUPONS_COLUMN_STATUS)));
 
-                CatalogItem catalogItem = new CatalogItem(catalogNumber, null, null, null, null, null, -1, -1, -1, -1, null);
+                CatalogItem catalogItem = new CatalogItem(catalogNumber, null, null, null, null, null, -1, -1, -1, -1, null, null);
                 Coupon coupon = new Coupon(couponCode, status, catalogItem);
                 coupons.add(coupon);
 

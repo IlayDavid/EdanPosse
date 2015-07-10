@@ -1,4 +1,4 @@
-package groupon.edanpossey.groupon1;
+package groupon.edanpossey.groupon1.Client.PresentationLayer;
 
 /**
  * Created by IlayDavid on 17/05/2015.
@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import groupon.edanpossey.groupon1.R;
 
 class CustomAdapter extends ArrayAdapter<String> {
 

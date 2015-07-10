@@ -1,9 +1,9 @@
-package groupon.edanpossey.groupon1;
+package groupon.edanpossey.groupon1.Client.PresentationLayer;
 
 import android.content.Context;
 
-import groupon.edanpossey.groupon1.BusinessLogicLayer.BusinessLogicLayerFactory;
-import groupon.edanpossey.groupon1.BusinessLogicLayer.IBL;
+import groupon.edanpossey.groupon1.Client.BusinessLogicLayer.BusinessLayerFacadeFactory;
+import groupon.edanpossey.groupon1.Client.BusinessLogicLayer.BusinessLayerFacade;
 import groupon.edanpossey.groupon1.Entities.User;
 
 /**
@@ -11,7 +11,7 @@ import groupon.edanpossey.groupon1.Entities.User;
  */
 public class ObjectsHolder {
     private static ObjectsHolder objectsHolder;
-    private IBL bl;
+    private BusinessLayerFacade bl;
     private User currentUser;
 
     //==============================================================================================
@@ -24,7 +24,7 @@ public class ObjectsHolder {
     }
 
     private ObjectsHolder(Context context) {
-        bl = BusinessLogicLayerFactory.getLayer(BusinessLogicLayerFactory.BLType.LocalDB, context);
+        bl = BusinessLayerFacadeFactory.getLayer(BusinessLayerFacadeFactory.BLType.LocalDB, context);
         currentUser = null;
     }
     //==============================================================================================
@@ -43,7 +43,7 @@ public class ObjectsHolder {
         this.currentUser = currentUser;
     }
 
-    public IBL getBl() {
+    public BusinessLayerFacade getBl() {
         return bl;
     }
 

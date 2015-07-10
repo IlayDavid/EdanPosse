@@ -1,4 +1,4 @@
-package groupon.edanpossey.groupon1.BusinessLogicLayer;
+package groupon.edanpossey.groupon1.Client.BusinessLogicLayer;
 
 import android.content.Context;
 
@@ -6,10 +6,8 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import groupon.edanpossey.groupon1.DataAccessLayer.DAL_LocalDB;
-import groupon.edanpossey.groupon1.DataAccessLayer.DataAccessLayerFactory;
-import groupon.edanpossey.groupon1.DataAccessLayer.IDAL;
-import groupon.edanpossey.groupon1.Entities.AccessLevel;
+import groupon.edanpossey.groupon1.Client.DataAccessLayer.DataAccessLayerFacadeFactory;
+import groupon.edanpossey.groupon1.Client.DataAccessLayer.DataAccessLayerFacade;
 import groupon.edanpossey.groupon1.Entities.Business;
 import groupon.edanpossey.groupon1.Entities.CatalogItem;
 import groupon.edanpossey.groupon1.Entities.Coupon;
@@ -19,8 +17,8 @@ import groupon.edanpossey.groupon1.Entities.User;
 /**
  * Created by IlayDavid on 17/05/2015.
  */
-public class BL_LocalDB implements IBL{
-    private IDAL myDal;
+public class BusinessLayerFacadeImpl implements BusinessLayerFacade {
+    private DataAccessLayerFacade myDal;
     private Map<String, User> userMap;
     private Map<String, Business> businessMap;
     private Map<Long, CatalogItem> catalogItemMap;
@@ -31,8 +29,8 @@ public class BL_LocalDB implements IBL{
     //region Constructors
     //==============================================================================================
 
-    protected BL_LocalDB(Context context) {
-        myDal = DataAccessLayerFactory.getDAL(DataAccessLayerFactory.DALType.LocalDB , context);
+    protected BusinessLayerFacadeImpl(Context context) {
+        myDal = DataAccessLayerFacadeFactory.getDAL(DataAccessLayerFacadeFactory.DALType.LocalDB, context);
         userMap = new LinkedHashMap<String, User>();
         businessMap = new LinkedHashMap<String, Business>();
         catalogItemMap = new LinkedHashMap<Long, CatalogItem>();
@@ -125,6 +123,7 @@ public class BL_LocalDB implements IBL{
     //==============================================================================================
     //region Methods
     //==============================================================================================
+
     public User login(String username, String password) {
         User user = userMap.get(username);
         if (user != null)                                               // Username doesn't exist
@@ -289,6 +288,16 @@ public class BL_LocalDB implements IBL{
         return true;
     }
 
+    @Override
+    public boolean deleteUser(User user) {
+        return false;
+    }
+
+    @Override
+    public boolean deleteCatalogItem(CatalogItem catalogItem) {
+        return false;
+    }
+
     public boolean rateCatalogItem(CatalogItem catalogItem, long rating){
         catalogItem.setRatings(catalogItem.getRatings() + 1);
         catalogItem.setSumOfRatings(catalogItem.getSumOfRatings() + rating);
@@ -301,7 +310,6 @@ public class BL_LocalDB implements IBL{
 
         return true;
     }
-
 
     //==============================================================================================
     //endregion Methods

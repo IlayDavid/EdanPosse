@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".LogIn_Activity"
+            android:name=".Client.PresentationLayer.LogIn_Activity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,11 +17,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Signup_activity"
+            android:name=".Client.PresentationLayer.Signup_activity"
             android:label="@string/title_activity_signup_activity" >
         </activity>
         <activity
-            android:name=".User_activity"
+            android:name=".Client.PresentationLayer.User_activity"
             android:label="@string/title_activity_user_activity" >
         </activity>
         <activity
@@ -33,12 +33,16 @@
             android:label="@string/title_activity_view_orders_activity" >
         </activity>
         <activity
-            android:name=".ViewOrders_activity"
+            android:name=".Client.PresentationLayer.ViewOrders_activity"
             android:label="@string/title_activity_view_orders_activity" >
         </activity>
         <activity
-            android:name=".AddCatalogItem"
+            android:name=".Client.PresentationLayer.AddCatalogItem"
             android:label="@string/title_activity_add_catalog_item" >
+        </activity>
+        <activity
+            android:name=".Client.PresentationLayer.AddBusinessActivity"
+            android:label="@string/title_activity_add_business" >
         </activity>
     </application>
 

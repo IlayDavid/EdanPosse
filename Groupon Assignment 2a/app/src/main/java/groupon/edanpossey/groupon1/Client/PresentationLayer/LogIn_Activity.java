@@ -1,4 +1,4 @@
-package groupon.edanpossey.groupon1;
+package groupon.edanpossey.groupon1.Client.PresentationLayer;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import groupon.edanpossey.groupon1.Entities.User;
+import groupon.edanpossey.groupon1.R;
 
 
 public class LogIn_Activity extends ActionBarActivity {

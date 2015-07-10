@@ -1,4 +1,4 @@
-package groupon.edanpossey.groupon1.DataAccessLayer;
+package groupon.edanpossey.groupon1.Client.DataAccessLayer;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -32,9 +32,10 @@ public class GrouponDBHelper extends SQLiteOpenHelper {
     public static final String BUSINESSES_COLUMN_CITY = "city";
     public static final String BUSINESSES_COLUMN_ADDRESS = "address";
     public static final String BUSINESSES_COLUMN_DESCRIPTION = "description";
+    public static final String BUSINESSES_COLUMN_COORDINATES = "coordinates";
     public static final String[] BUSINESS_COLUMNS =
             {BUSINESSES_COLUMN_BUSINESSNAME, BUSINESSES_COLUMN_ID,
-                    BUSINESSES_COLUMN_CITY, BUSINESSES_COLUMN_ADDRESS, BUSINESSES_COLUMN_DESCRIPTION};
+                    BUSINESSES_COLUMN_CITY, BUSINESSES_COLUMN_ADDRESS, BUSINESSES_COLUMN_DESCRIPTION, BUSINESSES_COLUMN_COORDINATES};
 
     public static final String CATALOG_TABLE_NAME = "Catalog";
     public static final String CATALOG_COLUMN_BUSINESSNAME = "businessName";        // References Businesses.businessName
@@ -48,11 +49,12 @@ public class GrouponDBHelper extends SQLiteOpenHelper {
     public static final String CATALOG_COLUMN_ORIGINALPRICE = "originalPrice";
     public static final String CATALOG_COLUMN_PRICEAFTERDISCOUNT = "priceAfterDiscount";
     public static final String CATALOG_COLUMN_EXPIRATIONDATE = "expirationDate";
-    public static final String[] CATALOG_COLUMNS = {CATALOG_COLUMN_CATALOGNUMBER,
+    public static final String CATALOG_COLUMN_TYPE = "type";
+    public static final String[] CATALOG_COLUMNS = {CATALOG_COLUMN_CATALOGNUMBER, CATALOG_COLUMN_BUSINESSNAME,
             CATALOG_COLUMN_CATEGORY,CATALOG_COLUMN_CATALONGITEMNAME, CATALOG_COLUMN_DESCRIPTION,
             CATALOG_COLUMN_STATUS, CATALOG_COLUMN_RATINGS, CATALOG_COLUMN_SUMOFRATINGS,
             CATALOG_COLUMN_ORIGINALPRICE, CATALOG_COLUMN_PRICEAFTERDISCOUNT,
-            CATALOG_COLUMN_EXPIRATIONDATE};
+            CATALOG_COLUMN_EXPIRATIONDATE, CATALOG_COLUMN_TYPE};
 
     public static final String ORDERS_TABLE_NAME = "Orders";
     public static final String ORDERS_COLUMN_ID = "id";                             // References Users.id
@@ -107,15 +109,14 @@ public class GrouponDBHelper extends SQLiteOpenHelper {
         db.execSQL(
                 "CREATE TABLE Businesses " +
                         "(" +
-                        "businessName TEXT PRIMARY KEY, id TEXT, city TEXT, address TEXT, description TEXT, " +
+                        "businessName TEXT PRIMARY KEY, id TEXT, city TEXT, address TEXT, description TEXT, coordinates TEXT, " +
                         "FOREIGN KEY(id) REFERENCES Users(id)" +
                         ")"
         );
         db.execSQL(
                 "CREATE TABLE Catalog " +
                         "(" +
-                        "catalogNumber INTEGER PRIMARY KEY, businessName TEXT, category TEXT, description TEXT, status TEXT, ratings INTEGER, sumOfRatings INTEGER, originalPrice REAL, priceAfterDiscount REAL, expirationDate DATE, " +
-                        "FOREIGN KEY(businessName) REFERENCES Businesses(businessName)" +
+                        "catalogNumber INTEGER PRIMARY KEY, businessName TEXT, category TEXT, catalongItemName TEXT, description TEXT, status TEXT, ratings INTEGER, sumOfRatings INTEGER, originalPrice REAL, priceAfterDiscount REAL, expirationDate DATE, type TEXT" +
                         ")"
         );
         db.execSQL(

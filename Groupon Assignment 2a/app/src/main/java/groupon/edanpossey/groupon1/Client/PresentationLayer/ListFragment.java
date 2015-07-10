@@ -1,8 +1,7 @@
-package groupon.edanpossey.groupon1;
+package groupon.edanpossey.groupon1.Client.PresentationLayer;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,9 +14,9 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.logging.Logger;
+
+import groupon.edanpossey.groupon1.R;
 
 /**
  * Created by IlayDavid on 17/05/2015.

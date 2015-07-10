@@ -10,4 +10,5 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_add_catalog_item">AddCatalogItem</string>
+    <string name="title_activity_add_business">AddBusinessActivity</string>
 </resources>

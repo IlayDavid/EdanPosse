@@ -1,5 +1,7 @@
 package groupon.edanpossey.groupon1.Entities;
 
+import android.location.Location;
+
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -8,6 +10,7 @@ import java.util.Iterator;
  */
 public class Business {
     private User owner;
+    private Location location;
     private String businessName, address, city, description;
     private Collection<CatalogItem> catalogItems;
 

@@ -1,4 +1,4 @@
-package groupon.edanpossey.groupon1.DataAccessLayer;
+package groupon.edanpossey.groupon1.Client.DataAccessLayer;
 
 import java.util.Collection;
 
@@ -11,7 +11,7 @@ import groupon.edanpossey.groupon1.Entities.User;
 /**
  * Created by IlayDavid on 17/05/2015.
  */
-public interface IDAL {
+public interface DataAccessLayerFacade {
     //==============================================================================================
     //region Database Connection
     //==============================================================================================

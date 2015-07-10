@@ -1,9 +1,11 @@
-package groupon.edanpossey.groupon1;
+package groupon.edanpossey.groupon1.Client.PresentationLayer;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import groupon.edanpossey.groupon1.R;
 
 
 public class ViewOrders_activity extends ActionBarActivity {

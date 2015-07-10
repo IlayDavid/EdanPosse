@@ -12,6 +12,9 @@ public class CatalogItem {
     public enum CatalogItemStatus {
         PendingApproval, Approved
     }
+    public enum CatalogItemType{
+        Social, NotSocial
+    }
 
     private Business publishedBy;
     private long catalogNumber, ratings, sumOfRatings;
@@ -19,6 +22,7 @@ public class CatalogItem {
     private CatalogItemStatus status;
     private double originalPrice, priceAfterDiscount;
     private Date expirationDate;
+    private CatalogItemType type;
     private Collection<Coupon> coupons;
     private Collection<Order> orders;
 
@@ -33,6 +37,7 @@ public class CatalogItem {
         category = null;
         description = null;
         status = null;
+        type = null;
         ratings = -1;
         sumOfRatings = -1;
         originalPrice = -1;
@@ -42,14 +47,14 @@ public class CatalogItem {
         orders = null;
     }
     public CatalogItem(Business publishedBy, String name, String category, String description,
-                       CatalogItemStatus status, long ratings, long sumOfRatings, double originalPrice, double priceAfterDiscount, Date expirationDate) {
+                       CatalogItemStatus status, long ratings, long sumOfRatings, double originalPrice, double priceAfterDiscount, Date expirationDate, CatalogItemType type) {
         this.catalogNumber = -1;
         this.publishedBy = publishedBy;
-        this.catalogNumber = catalogNumber;
         this.name = name;
         this.category = category;
         this.description = description;
         this.status = status;
+        this.type = type;
         this.ratings = ratings;
         this.sumOfRatings = sumOfRatings;
         this.originalPrice = originalPrice;
@@ -59,20 +64,9 @@ public class CatalogItem {
         this.orders = new LinkedList<Order>();
     }
     public CatalogItem(long catalogNumber, Business publishedBy, String name, String category, String description,
-                       CatalogItemStatus status, long ratings, long sumOfRatings, double originalPrice, double priceAfterDiscount, Date expirationDate) {
-        this.publishedBy = publishedBy;
+                       CatalogItemStatus status, long ratings, long sumOfRatings, double originalPrice, double priceAfterDiscount, Date expirationDate, CatalogItemType type) {
+        this(publishedBy,name,category,description,status,ratings,sumOfRatings,originalPrice,priceAfterDiscount,expirationDate,type);
         this.catalogNumber = catalogNumber;
-        this.name = name;
-        this.category = category;
-        this.description = description;
-        this.status = status;
-        this.ratings = ratings;
-        this.sumOfRatings = sumOfRatings;
-        this.originalPrice = originalPrice;
-        this.priceAfterDiscount = priceAfterDiscount;
-        this.expirationDate = expirationDate;
-        this.coupons = new LinkedList<Coupon>();
-        this.orders = new LinkedList<Order>();
     }
 
     //==============================================================================================

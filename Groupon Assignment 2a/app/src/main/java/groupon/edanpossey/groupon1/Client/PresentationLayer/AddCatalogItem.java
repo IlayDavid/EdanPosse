@@ -1,4 +1,4 @@
-package groupon.edanpossey.groupon1;
+package groupon.edanpossey.groupon1.Client.PresentationLayer;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -13,10 +13,11 @@ import java.sql.Date;
 
 import groupon.edanpossey.groupon1.Entities.Business;
 import groupon.edanpossey.groupon1.Entities.CatalogItem;
+import groupon.edanpossey.groupon1.R;
 
 
 public class AddCatalogItem extends ActionBarActivity {
-    EditText catalogItemNameText, categoryText, descriptionText, expirationDateText, originalPriceText, priceAfterDiscountText;
+    EditText catalogItemNameText, categoryText, descriptionText, expirationDateText, originalPriceText, priceAfterDiscountText, linkText;
     Button addItemButton;
     ObjectsHolder objectsHolder;
     @Override
@@ -30,9 +31,14 @@ public class AddCatalogItem extends ActionBarActivity {
         expirationDateText = (EditText) findViewById(R.id.expirationDateTextView);
         originalPriceText = (EditText) findViewById(R.id.originalPriceTextView);
         priceAfterDiscountText = (EditText) findViewById(R.id.priceAfterDiscountTextView);
+        linkText = (EditText) findViewById(R.id.linkTextView);
         addItemButton = (Button) findViewById(R.id.addItemButton);
 
         objectsHolder = ObjectsHolder.getInstance(getApplicationContext());
+
+        if(objectsHolder.getCurrentUser().getBusiness() == null){
+            linkText.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -59,13 +65,9 @@ public class AddCatalogItem extends ActionBarActivity {
 
     public void addItem_ButtonClick(View view) {
         boolean missingParameters;
-        Business publishedBy = objectsHolder.getCurrentUser().getBusiness();
-        missingParameters = publishedBy != null;
-        if(missingParameters)
-            Toast.makeText(getApplicationContext(), "No business associated with account", Toast.LENGTH_LONG).show();
 
         String expirationDateString = expirationDateText.getText().toString();
-        missingParameters = missingParameters || (expirationDateText.equals("") || expirationDateString == null);
+        missingParameters = (expirationDateText.equals("") || expirationDateString == null);
 
         String originalPriceString = originalPriceText.getText().toString();
         missingParameters = missingParameters || (originalPriceString.equals("") || originalPriceString == null);
@@ -82,6 +84,16 @@ public class AddCatalogItem extends ActionBarActivity {
         String descriptionString = descriptionText.getText().toString();
         missingParameters = missingParameters || (descriptionString.equals("") || descriptionString == null);
 
+        CatalogItem.CatalogItemType type = CatalogItem.CatalogItemType.NotSocial;
+        Business publishedBy = objectsHolder.getCurrentUser().getBusiness();
+        if(publishedBy == null){
+            type = CatalogItem.CatalogItemType.Social;
+            String linkString = linkText.getText().toString();
+            missingParameters = missingParameters || (linkString.equals("") || linkString == null);
+            if(!missingParameters)
+                publishedBy = new Business(null, linkString, null, null, null);
+        }
+
         if(missingParameters) {
             Toast.makeText(getApplicationContext(), "Missing parameters.", Toast.LENGTH_LONG).show();
         }
@@ -96,7 +108,7 @@ public class AddCatalogItem extends ActionBarActivity {
             String description = descriptionString;
 
             CatalogItem catalogItem = new CatalogItem(publishedBy, name, category, description,
-                    CatalogItem.CatalogItemStatus.PendingApproval, 0, 0, originalPrice, priceAfterDiscount, expirationDate);
+                    CatalogItem.CatalogItemStatus.PendingApproval, 0, 0, originalPrice, priceAfterDiscount, expirationDate, type);
             if(objectsHolder.getBl().newCatalogItem(catalogItem)){
                 Toast.makeText(getApplicationContext(), "Item added successfully!", Toast.LENGTH_LONG).show();
                 clearFields();
