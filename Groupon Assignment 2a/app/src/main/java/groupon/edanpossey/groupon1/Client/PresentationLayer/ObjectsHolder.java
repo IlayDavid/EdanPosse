@@ -96,6 +96,8 @@ public class ObjectsHolder {
     }
 
     public static Collection<Business> getCurrentBusinessesList() {
+        if(currentBusinessesList == null)
+            currentBusinessesList = new ArrayList<Business>();
         return currentBusinessesList;
     }
 
@@ -104,6 +106,8 @@ public class ObjectsHolder {
     }
 
     public static Collection<CatalogItem> getCurrentCatalogItemsList() {
+        if(currentCatalogItemsList == null)
+            currentCatalogItemsList = new ArrayList<CatalogItem>();
         return currentCatalogItemsList;
     }
 
@@ -136,6 +140,8 @@ public class ObjectsHolder {
     }
 
     public static Collection<Order> getCurrentOrdersList() {
+        if(currentOrdersList == null)
+            currentOrdersList = new ArrayList<Order>();
         return currentOrdersList;
     }
 
@@ -144,6 +150,7 @@ public class ObjectsHolder {
     }
 
     public static Business getCurrentBusiness() {
+
         return currentBusiness;
     }
 

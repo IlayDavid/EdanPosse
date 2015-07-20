@@ -31,6 +31,14 @@
             android:label="@string/title_activity_view_orders_activity" >
         </activity>
         <activity
+            android:name=".Client.PresentationLayer.ViewCatalogItems_activity"
+            android:label="@string/title_activity_view_catalog_items_activity" >
+        </activity>
+        <activity
+            android:name=".Client.PresentationLayer.ViewBusinesses_activity"
+            android:label="@string/title_activity_view_businesses_activity" >
+        </activity>
+        <activity
             android:name=".Client.PresentationLayer.AddCatalogItem"
             android:label="@string/title_activity_add_catalog_item" >
         </activity>

@@ -59,7 +59,7 @@ public class User_activity extends ActionBarActivity {
             Location location = ObjectsHolder.getLocationManager().getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 
             ObjectsHolder.getBl().getCatalogItemsByPreferences(categories, city, radius, 0.0, 0.0);
-            Intent i = new Intent(this,ViewCatalogItems_activity.class);
+            Intent i = new Intent(this, ViewCatalogItems_activity.class);
             startActivity(i);
         }
     }

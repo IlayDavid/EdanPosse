@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import groupon.edanpossey.groupon1.Entities.AccessLevel;
 import groupon.edanpossey.groupon1.Entities.Business;
 import groupon.edanpossey.groupon1.Entities.CatalogItem;
 import groupon.edanpossey.groupon1.Entities.Coupon;
@@ -27,6 +28,13 @@ public class DataAccessLayerFacadeImpl implements DataAccessLayerFacade {
         catalogItemMap = new LinkedHashMap<Long, CatalogItem>();
         couponMap = new LinkedHashMap<Long, Coupon>();
         orderMap = new LinkedHashMap<Long, Order>();
+        User admin = new User("admin","adminpass","admin@email","1234567890", AccessLevel.Administrator, null);
+        User user = new User("business","businesspass","business@email","0987654321", AccessLevel.Business, null);
+        Business business = new Business(user, "businessname", "address", "city", "hartabuna");
+        user.setBusiness(business);
+        businessMap.put(business.getBusinessName(),business);
+        userMap.put(user.getId(),user);
+        userMap.put(admin.getId(), admin);
         orderCode = 0;
         catalogNumber = 0;
         couponCode = 0;

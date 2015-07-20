@@ -57,7 +57,7 @@ public class Admin_activity extends ActionBarActivity {
         if(everythingOk){
             Location location = ObjectsHolder.getLocationManager().getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 
-            ObjectsHolder.getBl().getCatalogItemsByPreferences(categories, city, radius, location.getLongitude(), location.getLatitude());
+            ObjectsHolder.getBl().getCatalogItemsByPreferences(categories, city, radius, 0.0, 0.0);
             Intent i = new Intent(this,ViewCatalogItems_activity.class);
             startActivity(i);
         }
@@ -82,8 +82,8 @@ public class Admin_activity extends ActionBarActivity {
         }
         if(everythingOk){
             Location location = ObjectsHolder.getLocationManager().getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-            Toast.makeText(getApplicationContext(), location.getLongitude() + ", " + location.getLatitude(), Toast.LENGTH_LONG).show();
-            ObjectsHolder.getBl().getBusinessesByPreference(categories, city, radius, location.getLongitude(), location.getLatitude());
+
+            ObjectsHolder.getBl().getBusinessesByPreference(categories, city, radius, 0.0, 0.0);
             Intent i = new Intent(this,ViewBusinesses_activity.class);
             startActivity(i);
         }
