@@ -1,6 +1,7 @@
 package groupon.edanpossey.groupon1.Entities;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -43,8 +44,8 @@ public class CatalogItem {
         originalPrice = -1;
         priceAfterDiscount = -1;
         expirationDate = null;
-        coupons = null;
-        orders = null;
+        this.orders = new ArrayList<Order>();
+        this.coupons = new ArrayList<Coupon>();
     }
     public CatalogItem(Business publishedBy, String name, String category, String description,
                        CatalogItemStatus status, long ratings, long sumOfRatings, double originalPrice, double priceAfterDiscount, Date expirationDate, CatalogItemType type) {
@@ -60,8 +61,8 @@ public class CatalogItem {
         this.originalPrice = originalPrice;
         this.priceAfterDiscount = priceAfterDiscount;
         this.expirationDate = expirationDate;
-        this.coupons = new LinkedList<Coupon>();
-        this.orders = new LinkedList<Order>();
+        this.coupons = new ArrayList<Coupon>();
+        this.orders = new ArrayList<Order>();
     }
     public CatalogItem(long catalogNumber, Business publishedBy, String name, String category, String description,
                        CatalogItemStatus status, long ratings, long sumOfRatings, double originalPrice, double priceAfterDiscount, Date expirationDate, CatalogItemType type) {
@@ -152,6 +153,13 @@ public class CatalogItem {
     }
     public void setExpirationDate(Date expirationDate) {
         this.expirationDate = expirationDate;
+    }
+
+    public CatalogItemType getType() {
+        return type;
+    }
+    public void setType(CatalogItemType type) {
+        this.type = type;
     }
 
     public Collection<Coupon> getCoupons() {

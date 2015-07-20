@@ -2,6 +2,7 @@ package groupon.edanpossey.groupon1.Entities;
 
 import android.location.Location;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -13,6 +14,7 @@ public class Business {
     private Location location;
     private String businessName, address, city, description;
     private Collection<CatalogItem> catalogItems;
+    private Collection<Order> orders;
 
     //==============================================================================================
     //region Constructors
@@ -24,6 +26,8 @@ public class Business {
         this.address = "";
         this.city = "";
         this.description = "";
+        this.catalogItems = new ArrayList<CatalogItem>();
+        this.orders = new ArrayList<Order>();
     }
 
     public Business(User owner, String businessName, String address, String city, String description) {
@@ -32,6 +36,8 @@ public class Business {
         this.address = address;
         this.city = city;
         this.description = description;
+        this.catalogItems = new ArrayList<CatalogItem>();
+        this.orders = new ArrayList<Order>();
     }
 
     //==============================================================================================
@@ -109,6 +115,14 @@ public class Business {
                 return removeCatalogItem(currentCatalogItem);
         }
         return false;
+    }
+
+    public boolean addOrder(Order order){
+        return this.orders.add(order);
+    }
+
+    public Collection<Order> getOrders() {
+        return orders;
     }
 
     //==============================================================================================

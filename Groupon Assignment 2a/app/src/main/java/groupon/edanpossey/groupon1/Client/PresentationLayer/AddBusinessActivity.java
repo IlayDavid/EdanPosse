@@ -2,6 +2,7 @@ package groupon.edanpossey.groupon1.Client.PresentationLayer;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,7 +21,6 @@ public class AddBusinessActivity extends ActionBarActivity {
     EditText businessNameText, addressText, cityText, descriptionText;
     Button addBusinessButton;
 
-    ObjectsHolder objectsHolder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,8 +37,6 @@ public class AddBusinessActivity extends ActionBarActivity {
         this.descriptionText = (EditText) findViewById(R.id.descriptionTextView);
 
         this.addBusinessButton = (Button) findViewById(R.id.addBusinessButton);
-
-        objectsHolder = ObjectsHolder.getInstance(getApplicationContext());
     }
 
     @Override
@@ -64,49 +62,73 @@ public class AddBusinessActivity extends ActionBarActivity {
     }
 
     public void addBusiness_ButtonClick(View view){
-        String username = userNameText.getText().toString();
-        String password = passwordText.getText().toString();
-        String email = emailText.getText().toString();
-        String phone = phoneText.getText().toString();
-        AccessLevel accessLevel = AccessLevel.Business;
+        if(!missingParameters()){
+            String username = userNameText.getText().toString();
+            String password = passwordText.getText().toString();
+            String email = emailText.getText().toString();
+            String phone = phoneText.getText().toString();
+            AccessLevel accessLevel = AccessLevel.Business;
 
-        boolean missingParameters = (username.equals("") || username == null);
-        missingParameters = missingParameters || (password.equals("") || password == null);
-        missingParameters = missingParameters || (email.equals("") || email == null);
-        missingParameters = missingParameters || (phone.equals("") || phone == null);
-
-        if(missingParameters){
-            Toast.makeText(getApplicationContext(), "Missing needed parameters to create user.", Toast.LENGTH_LONG).show();
-        }
-        else{
             String businessName = businessNameText.getText().toString();
             String address = addressText.getText().toString();
             String city = cityText.getText().toString();
             String description = descriptionText.getText().toString();
 
-            missingParameters = (businessName.equals("") || businessName == null);
-            missingParameters = missingParameters || (address.equals("") || address == null);
-            missingParameters = missingParameters || (city.equals("") || city == null);
-            missingParameters = missingParameters || (description.equals("") || description == null);
-
-            if(missingParameters){
-                Toast.makeText(getApplicationContext(), "Missing needed parameters to create business.", Toast.LENGTH_LONG).show();
-            }
-            else{
-                User user = new User(username, password, email, phone, accessLevel, null);
-                if(this.objectsHolder.getBl().newUser(user)){
-                    Business business = new Business(user, businessName, address, city, description);
-                    if(this.objectsHolder.getBl().newBusiness(business)){
-
-                    }
-                    else{
-                        objectsHolder.getBl().deleteUser(user);
-                    }
+            User user = new User(username, password, email, phone, accessLevel, null);
+            if(ObjectsHolder.getBl().newUser(user)){
+                Business business = new Business(user, businessName, address, city, description);
+                if(ObjectsHolder.getBl().newBusiness(business)){
+                    Toast.makeText(getApplicationContext(), "Business added successfully.", Toast.LENGTH_LONG).show();
                 }
                 else{
-                    Toast.makeText(getApplicationContext(), "Couldn't create user.", Toast.LENGTH_LONG).show();
+                    ObjectsHolder.getBl().deleteUser(user);
+                    Toast.makeText(getApplicationContext(), "Couldn't add business.", Toast.LENGTH_LONG).show();
                 }
             }
+            else{
+                Toast.makeText(getApplicationContext(), "Couldn't create user.", Toast.LENGTH_LONG).show();
+            }
+
         }
+    }
+
+    private boolean missingParameters(){
+        boolean missing = false;
+
+        if(TextUtils.isEmpty(userNameText.getText())){
+            missing = true;
+            userNameText.setError("Username can't be empty.");
+        }
+        if(TextUtils.isEmpty(passwordText.getText())){
+            missing = true;
+            passwordText.setError("Password can't be empty.");
+        }
+        if(TextUtils.isEmpty(emailText.getText())){
+            missing = true;
+            emailText.setError("E-mail can't be empty.");
+        }
+        if(TextUtils.isEmpty(phoneText.getText())){
+            missing = true;
+            phoneText.setError("Phone number can't be empty.");
+        }
+        //---------------------------------
+        if(TextUtils.isEmpty(businessNameText.getText())){
+            missing = true;
+            businessNameText.setError("Business name can't be empty.");
+        }
+        if(TextUtils.isEmpty(addressText.getText())){
+            missing = true;
+            addressText.setError("Address can't be empty.");
+        }
+        if(TextUtils.isEmpty(cityText.getText())){
+            missing = true;
+            cityText.setError("City can't be empty.");
+        }
+        if(TextUtils.isEmpty(descriptionText.getText())){
+            missing = true;
+            descriptionText.setError("Description can't be empty.");
+        }
+
+        return missing;
     }
 }

@@ -116,7 +116,7 @@ public class GrouponDBHelper extends SQLiteOpenHelper {
         db.execSQL(
                 "CREATE TABLE Catalog " +
                         "(" +
-                        "catalogNumber INTEGER PRIMARY KEY, businessName TEXT, category TEXT, catalongItemName TEXT, description TEXT, status TEXT, ratings INTEGER, sumOfRatings INTEGER, originalPrice REAL, priceAfterDiscount REAL, expirationDate DATE, type TEXT" +
+                        "catalogNumber INTEGER PRIMARY KEY, businessName TEXT, category TEXT, catalogItemName TEXT, description TEXT, status TEXT, ratings INTEGER, sumOfRatings INTEGER, originalPrice REAL, priceAfterDiscount REAL, expirationDate DATE, type TEXT" +
                         ")"
         );
         db.execSQL(

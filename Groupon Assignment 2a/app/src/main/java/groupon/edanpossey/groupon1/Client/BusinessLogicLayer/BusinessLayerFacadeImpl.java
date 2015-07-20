@@ -311,6 +311,26 @@ public class BusinessLayerFacadeImpl implements BusinessLayerFacade {
         return true;
     }
 
+    @Override
+    public boolean updateUser(User userOld, User userNew) {
+        return false;
+    }
+
+    @Override
+    public Collection<CatalogItem> getCatalogItemsByPreferences(String categories, String city, int radius, double longitude, double latitude) {
+        return null;
+    }
+
+    @Override
+    public Collection<Business> getBusinessesByPreference(String categories, String city, int radius, double longitude, double latitude) {
+        return null;
+    }
+
+    @Override
+    public Collection<CatalogItem> getPendingCatalogItems() {
+        return null;
+    }
+
     //==============================================================================================
     //endregion Methods
     //==============================================================================================

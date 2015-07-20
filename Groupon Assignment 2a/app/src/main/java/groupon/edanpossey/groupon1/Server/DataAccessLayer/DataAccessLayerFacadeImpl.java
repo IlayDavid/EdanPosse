@@ -19,6 +19,7 @@ public class DataAccessLayerFacadeImpl implements DataAccessLayerFacade {
     private Map<Long, CatalogItem> catalogItemMap;
     private Map<Long, Coupon> couponMap;
     private Map<Long, Order> orderMap;
+    private long orderCode, catalogNumber, couponCode;
 
     public DataAccessLayerFacadeImpl(){
         userMap = new LinkedHashMap<String, User>();
@@ -26,6 +27,9 @@ public class DataAccessLayerFacadeImpl implements DataAccessLayerFacade {
         catalogItemMap = new LinkedHashMap<Long, CatalogItem>();
         couponMap = new LinkedHashMap<Long, Coupon>();
         orderMap = new LinkedHashMap<Long, Order>();
+        orderCode = 0;
+        catalogNumber = 0;
+        couponCode = 0;
     }
 
     @Override
@@ -39,105 +43,222 @@ public class DataAccessLayerFacadeImpl implements DataAccessLayerFacade {
     }
 
     @Override
+    public User getUser(String id) {
+        return userMap.get(id);
+    }
+
+    @Override
+    public Business getBusiness(String businessName) {
+        return businessMap.get(businessName);
+    }
+
+    @Override
+    public CatalogItem getCatalogItem(long catalogNumber) {
+        return catalogItemMap.get(catalogNumber);
+    }
+
+    @Override
+    public Coupon getCoupon(long couponCode) {
+        return couponMap.get(couponCode);
+    }
+
+    @Override
+    public Order getOrder(long orderCode) {
+        return orderMap.get(orderCode);
+    }
+
+    @Override
     public long insertCoupon(Coupon coupon) {
         if(couponMap.get(coupon.getCouponCode()) == null){
-
+            coupon.setCouponCode(couponCode);
+            couponMap.put(couponCode, coupon);
+            couponCode++;
+            return couponCode - 1;
         }
-        return 0;
+        return -1;
     }
 
     @Override
     public long insertOrder(Order order) {
-        return 0;
+        if(orderMap.get(order.getOrderCode()) == null){
+            order.setOrderCode(orderCode);
+            orderMap.put(orderCode, order);
+            orderCode++;
+            return orderCode - 1;
+        }
+        return -1;
     }
 
     @Override
     public long insertCatalogItem(CatalogItem catalogItem) {
-        return 0;
+        if(catalogItemMap.get(catalogItem.getCatalogNumber()) == null){
+            catalogItem.setCatalogNumber(catalogNumber);
+            catalogItemMap.put(catalogNumber, catalogItem);
+            catalogNumber++;
+            return catalogNumber - 1;
+        }
+        return -1;
     }
 
     @Override
     public long insertBusiness(Business business) {
-        return 0;
+        if(businessMap.get(business.getBusinessName()) == null){
+            businessMap.put(business.getBusinessName(), business);
+            return 1;
+        }
+        return -1;
     }
 
     @Override
     public long insertUser(User user) {
-        return 0;
+        if(userMap.get(user.getId()) == null){
+            userMap.put(user.getId(), user);
+            return 1;
+        }
+        return -1;
     }
 
     @Override
     public long updateUser(User oldEntity, User newEntity) {
-        return 0;
+        if(userMap.get(newEntity.getId()) == null){
+
+            userMap.remove(oldEntity.getId());
+            userMap.put(newEntity.getId(), oldEntity);
+
+            oldEntity.setEmail(newEntity.getEmail());
+            oldEntity.setId(newEntity.getId());
+            oldEntity.setPassword(newEntity.getPassword());
+            oldEntity.setPhoneNumber(newEntity.getPhoneNumber());
+            oldEntity.setAccessLevel(newEntity.getAccessLevel());
+
+            return 1;
+        }
+        return -1;
     }
 
     @Override
     public long updateBusiness(Business oldEntity, Business newEntity) {
-        return 0;
+        if(businessMap.get(newEntity.getBusinessName()) == null){
+
+            businessMap.remove(oldEntity.getBusinessName());
+            businessMap.put(newEntity.getBusinessName(), oldEntity);
+
+            oldEntity.setAddress(newEntity.getAddress());
+            oldEntity.setBusinessName(newEntity.getBusinessName());
+            oldEntity.setCity(newEntity.getCity());
+            oldEntity.setDescription(newEntity.getDescription());
+
+            return 1;
+        }
+        return -1;
     }
 
     @Override
     public long updateCatalogItem(CatalogItem oldEntity, CatalogItem newEntity) {
-        return 0;
+        if(catalogItemMap.get(newEntity.getCatalogNumber()) == null){
+
+            catalogItemMap.remove(oldEntity.getCatalogNumber());
+            catalogItemMap.put(newEntity.getCatalogNumber(), oldEntity);
+
+            oldEntity.setCatalogNumber(newEntity.getCatalogNumber());
+            oldEntity.setDescription(newEntity.getDescription());
+            oldEntity.setCategory(newEntity.getCategory());
+            oldEntity.setExpirationDate(newEntity.getExpirationDate());
+            oldEntity.setName(newEntity.getName());
+            oldEntity.setOriginalPrice(newEntity.getOriginalPrice());
+            oldEntity.setPriceAfterDiscount(newEntity.getPriceAfterDiscount());
+            oldEntity.setRatings(newEntity.getRatings());
+            oldEntity.setSumOfRatings(newEntity.getSumOfRatings());
+            oldEntity.setStatus(newEntity.getStatus());
+
+            return 1;
+        }
+        return -1;
     }
 
     @Override
     public long updateOrder(Order oldEntity, Order newEntity) {
-        return 0;
+        if(orderMap.get(newEntity.getOrderCode()) == null){
+
+            orderMap.remove(oldEntity.getOrderCode());
+            orderMap.put(newEntity.getOrderCode(), oldEntity);
+
+            oldEntity.setOrderCode(newEntity.getOrderCode());
+            oldEntity.setOrderStatus(newEntity.getOrderStatus());
+
+            return 1;
+        }
+        return -1;
     }
 
     @Override
     public long updateCoupon(Coupon oldEntity, Coupon newEntity) {
-        return 0;
+        if(couponMap.get(newEntity.getCouponCode()) == null){
+
+            couponMap.remove(oldEntity.getCouponCode());
+            couponMap.put(newEntity.getCouponCode(), oldEntity);
+
+            oldEntity.setCouponCode(newEntity.getCouponCode());
+            oldEntity.setStatus(newEntity.getStatus());
+
+            return 1;
+        }
+        return -1;
     }
 
     @Override
     public int deleteUser(User entity) {
-        return 0;
+        userMap.remove(entity.getId());
+        return 1;
     }
 
     @Override
     public int deleteBusiness(Business entity) {
-        return 0;
+        businessMap.remove(entity.getBusinessName());
+        return 1;
     }
 
     @Override
     public int deleteCatalogItem(CatalogItem entity) {
-        return 0;
+        catalogItemMap.remove(entity.getCatalogNumber());
+        return 1;
     }
 
     @Override
     public int deleteOrder(Order entity) {
-        return 0;
+        orderMap.remove(entity.getOrderCode());
+        deleteCoupon(entity.getCoupon());
+        return 1;
     }
 
     @Override
     public int deleteCoupon(Coupon entity) {
-        return 0;
+        couponMap.remove(entity.getCouponCode());
+        return 1;
     }
 
     @Override
     public Collection<User> getUsers() {
-        return null;
+        return userMap.values();
     }
 
     @Override
     public Collection<Business> getBusinesses() {
-        return null;
+        return businessMap.values();
     }
 
     @Override
     public Collection<Order> getOrders() {
-        return null;
+        return orderMap.values();
     }
 
     @Override
     public Collection<Coupon> getCoupons() {
-        return null;
+        return couponMap.values();
     }
 
     @Override
     public Collection<CatalogItem> getCatalogItems() {
-        return null;
+        return catalogItemMap.values();
     }
 }

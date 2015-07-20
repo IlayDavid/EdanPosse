@@ -2,6 +2,7 @@ package groupon.edanpossey.groupon1.Client.PresentationLayer;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,12 +17,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.logging.Logger;
 
+import groupon.edanpossey.groupon1.Entities.CatalogItem;
+import groupon.edanpossey.groupon1.Entities.Coupon;
+import groupon.edanpossey.groupon1.Entities.Order;
 import groupon.edanpossey.groupon1.R;
 
 /**
  * Created by IlayDavid on 17/05/2015.
  */
-public class ListFragment extends Fragment {
+public class ListFragmentCatalogItems extends Fragment {
 
     private ArrayList<String> nameList;
 
@@ -33,8 +37,9 @@ public class ListFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.list_top_fragment, container, false);
+        View view = inflater.inflate(R.layout.list_catalog_items_fragment, container, false);
 
+        ArrayList<CatalogItem> catalogItemsList = (ArrayList<CatalogItem>) ObjectsHolder.getCurrentCatalogItemsList();
         String[] names = {};
         nameList = new ArrayList<String>(Arrays.asList(names));
 
@@ -75,19 +80,16 @@ public class ListFragment extends Fragment {
 
          */
 
-        final ListAdapter couponsAdapter = new CustomAdapter(view.getContext(), nameList);
-        ListView couponsListView = (ListView) view.findViewById(R.id.couponsListView);
-        couponsListView.setAdapter(couponsAdapter);
-        couponsListView.setOnItemClickListener(
+        final ListAdapter catalogItemsAdapter = new CustomAdapterCatalogItems(view.getContext(), catalogItemsList);
+        ListView catalogItemsListView = (ListView) view.findViewById(R.id.catalogItemsListView);
+        catalogItemsListView.setAdapter(catalogItemsAdapter);
+        catalogItemsListView.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Log.i("Harta", "helo");
-                        System.out.println("hohohoho");
-                        String name = String.valueOf(parent.getItemAtPosition(position));
-                        Logger l = Logger.getLogger("harta");
-                        l.info("hello");
-                        Toast.makeText(getActivity().getApplicationContext(), "Ori is meffagger.", Toast.LENGTH_LONG).show();
+                        ObjectsHolder.setCurrentCatalogItem((CatalogItem) parent.getItemAtPosition(position));
+                        Intent i = new Intent(view.getContext(), ViewCatalogItem.class);
+                        startActivity(i);
                     }
                 });
 

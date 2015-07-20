@@ -2,12 +2,15 @@ package groupon.edanpossey.groupon1.Client.PresentationLayer;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.sql.Date;
 
@@ -19,7 +22,6 @@ import groupon.edanpossey.groupon1.R;
 public class AddCatalogItem extends ActionBarActivity {
     EditText catalogItemNameText, categoryText, descriptionText, expirationDateText, originalPriceText, priceAfterDiscountText, linkText;
     Button addItemButton;
-    ObjectsHolder objectsHolder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,9 +36,7 @@ public class AddCatalogItem extends ActionBarActivity {
         linkText = (EditText) findViewById(R.id.linkTextView);
         addItemButton = (Button) findViewById(R.id.addItemButton);
 
-        objectsHolder = ObjectsHolder.getInstance(getApplicationContext());
-
-        if(objectsHolder.getCurrentUser().getBusiness() == null){
+        if(ObjectsHolder.getCurrentUser().getBusiness() == null){
             linkText.setVisibility(View.VISIBLE);
         }
     }
@@ -64,52 +64,30 @@ public class AddCatalogItem extends ActionBarActivity {
     }
 
     public void addItem_ButtonClick(View view) {
-        boolean missingParameters;
 
-        String expirationDateString = expirationDateText.getText().toString();
-        missingParameters = (expirationDateText.equals("") || expirationDateString == null);
+        if(!missingParameters()){
 
-        String originalPriceString = originalPriceText.getText().toString();
-        missingParameters = missingParameters || (originalPriceString.equals("") || originalPriceString == null);
+            CatalogItem.CatalogItemType type = CatalogItem.CatalogItemType.NotSocial;
+            Business publishedBy = ObjectsHolder.getCurrentUser().getBusiness();
+            if(publishedBy == null){
+                type = CatalogItem.CatalogItemType.Social;
+                String linkString = linkText.getText().toString();
 
-        String priceAfterDiscountString = priceAfterDiscountText.getText().toString();
-        missingParameters = missingParameters || (priceAfterDiscountString.equals("") || priceAfterDiscountString == null);
-
-        String nameString = catalogItemNameText.getText().toString();
-        missingParameters = missingParameters || (nameString.equals("") || nameString == null);
-
-        String categoryString = categoryText.getText().toString();
-        missingParameters = missingParameters || (categoryString.equals("") || categoryString == null);
-
-        String descriptionString = descriptionText.getText().toString();
-        missingParameters = missingParameters || (descriptionString.equals("") || descriptionString == null);
-
-        CatalogItem.CatalogItemType type = CatalogItem.CatalogItemType.NotSocial;
-        Business publishedBy = objectsHolder.getCurrentUser().getBusiness();
-        if(publishedBy == null){
-            type = CatalogItem.CatalogItemType.Social;
-            String linkString = linkText.getText().toString();
-            missingParameters = missingParameters || (linkString.equals("") || linkString == null);
-            if(!missingParameters)
                 publishedBy = new Business(null, linkString, null, null, null);
-        }
+            }
 
-        if(missingParameters) {
-            Toast.makeText(getApplicationContext(), "Missing parameters.", Toast.LENGTH_LONG).show();
-        }
-        else{
-            Date expirationDate = Date.valueOf(expirationDateString);
+            Date expirationDate = Date.valueOf(expirationDateText.getText().toString());
 
-            double originalPrice = Double.parseDouble(originalPriceString);
-            double priceAfterDiscount = Double.parseDouble(priceAfterDiscountString);
+            double originalPrice = Double.parseDouble(originalPriceText.getText().toString());
+            double priceAfterDiscount = Double.parseDouble(priceAfterDiscountText.getText().toString());
 
-            String name = nameString;
-            String category = categoryString;
-            String description = descriptionString;
+            String name = catalogItemNameText.getText().toString();
+            String category = categoryText.getText().toString();
+            String description = descriptionText.getText().toString();
 
             CatalogItem catalogItem = new CatalogItem(publishedBy, name, category, description,
                     CatalogItem.CatalogItemStatus.PendingApproval, 0, 0, originalPrice, priceAfterDiscount, expirationDate, type);
-            if(objectsHolder.getBl().newCatalogItem(catalogItem)){
+            if(ObjectsHolder.getBl().newCatalogItem(catalogItem)){
                 Toast.makeText(getApplicationContext(), "Item added successfully!", Toast.LENGTH_LONG).show();
                 clearFields();
             }
@@ -119,6 +97,43 @@ public class AddCatalogItem extends ActionBarActivity {
         }
     }
 
+    private boolean missingParameters() {
+        boolean missing = false;
+
+        if(TextUtils.isEmpty(catalogItemNameText.getText())){
+            missing = true;
+            catalogItemNameText.setError("Item name can't be empty.");
+        }
+        if(TextUtils.isEmpty(originalPriceText.getText())){
+            missing = true;
+            originalPriceText.setError("Original price can't be empty.");
+        }
+        if(TextUtils.isEmpty(priceAfterDiscountText.getText())){
+            missing = true;
+            priceAfterDiscountText.setError("Price after discount can't be empty.");
+        }
+        if(TextUtils.isEmpty(categoryText.getText())){
+            missing = true;
+            categoryText.setError("Category can't be empty.");
+        }
+        if(TextUtils.isEmpty(descriptionText.getText())){
+            missing = true;
+            descriptionText.setError("Description can't be empty.");
+        }
+        if(TextUtils.isEmpty(expirationDateText.getText())){
+            missing = true;
+            expirationDateText.setError("Expiration date can't be empty.");
+        }
+
+        if(ObjectsHolder.getCurrentUser().getBusiness() == null){
+            if(TextUtils.isEmpty(linkText.getText())){
+                missing = true;
+                linkText.setError("Link can't be empty.");
+            }
+        }
+        return missing;
+    }
+
     private void clearFields() {
         catalogItemNameText.setText("");
         categoryText.setText("");
@@ -126,5 +141,6 @@ public class AddCatalogItem extends ActionBarActivity {
         expirationDateText.setText("");
         originalPriceText.setText("");
         priceAfterDiscountText.setText("");
+        linkText.setText("");
     }
 }

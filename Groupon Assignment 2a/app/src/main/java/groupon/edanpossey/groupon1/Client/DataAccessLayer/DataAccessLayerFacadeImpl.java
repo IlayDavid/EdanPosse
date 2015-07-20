@@ -384,10 +384,10 @@ public class DataAccessLayerFacadeImpl implements DataAccessLayerFacade {
                 long averageRating = cursorCatalog.getLong(cursorCatalog.getColumnIndex(GrouponDBHelper.CATALOG_COLUMN_SUMOFRATINGS));
                 CatalogItem.CatalogItemStatus status = CatalogItem.CatalogItemStatus.valueOf(cursorCatalog.getString(cursorCatalog.getColumnIndex(GrouponDBHelper.CATALOG_COLUMN_STATUS)));
                 Date date = Date.valueOf(cursorCatalog.getString(cursorCatalog.getColumnIndex(GrouponDBHelper.CATALOG_COLUMN_EXPIRATIONDATE)));
-
+                CatalogItem.CatalogItemType type = CatalogItem.CatalogItemType.valueOf(cursorCatalog.getColumnName(cursorCatalog.getColumnIndex(GrouponDBHelper.CATALOG_COLUMN_TYPE)));
                 Business business = new Business(null, businessName, null, null, null);
                 CatalogItem catalogItem = new CatalogItem(catalogNumber, business, catalogItemName, category,
-                        description, status, rating, averageRating, originalPrice, priceAfterDiscount, date);
+                        description, status, rating, averageRating, originalPrice, priceAfterDiscount, date, type);
                 catalogItems.add(catalogItem);
 
                 cursorCatalog.moveToNext();

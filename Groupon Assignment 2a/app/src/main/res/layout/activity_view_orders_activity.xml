@@ -9,11 +9,11 @@
     <fragment
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:name="groupon.edanpossey.groupon1.Client.PresentationLayer.ListFragment"
+        android:name="groupon.edanpossey.groupon1.Client.PresentationLayer.ListFragmentOrders"
         android:id="@+id/fragment"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"
-        tools:layout="@layout/list_top_fragment" />
+        tools:layout="@layout/list_orders_fragment" />
 
 
 </RelativeLayout>

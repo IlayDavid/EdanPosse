@@ -8,5 +8,10 @@
     http://developer.android.com/training/multiscreen/screensizes.html#TaskUseAliasFilters
     -->
     <item name="fragment_item" type="layout">@layout/custom_row_view_order</item>
+    <item name="fragment_item_2" type="layout">@layout/custom_row_view_catalog_item</item>
+    <item name="fragment_item_3" type="layout">@layout/custom_row_view_business</item>
+
+
+
 
 </resources>

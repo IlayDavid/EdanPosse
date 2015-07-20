@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import groupon.edanpossey.groupon1.Entities.User;
+import groupon.edanpossey.groupon1.Entities.AccessLevel;
 import groupon.edanpossey.groupon1.R;
 
 
@@ -20,8 +21,6 @@ public class LogIn_Activity extends ActionBarActivity {
     EditText passText;
     Button loginBtn;
     Button signupBtn;
-    ObjectsHolder objectsHolder;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +31,7 @@ public class LogIn_Activity extends ActionBarActivity {
         loginBtn = (Button) findViewById(R.id.LogIn_bt);
         signupBtn = (Button) findViewById(R.id.SignUp_bt);
         this.getApplication().getApplicationContext();
-        objectsHolder = ObjectsHolder.getInstance(this.getApplication().getApplicationContext());
-        System.out.println(objectsHolder == null);
+        ObjectsHolder.initialize(this.getApplication().getApplicationContext());
     }
 
 
@@ -41,10 +39,16 @@ public class LogIn_Activity extends ActionBarActivity {
         String username = userText.getText().toString();
         String password = passText.getText().toString();
 
-        User currentUser = objectsHolder.getBl().login(username, password);
+        User currentUser = ObjectsHolder.getBl().login(username, password);
         if(currentUser != null){
-            objectsHolder.setCurrentUser(currentUser);
-            Intent i = new Intent(this,User_activity.class);
+            ObjectsHolder.setCurrentUser(currentUser);
+            Intent i;
+            if(ObjectsHolder.getCurrentUser().getAccessLevel() == AccessLevel.Administrator)
+                i = new Intent(this, Admin_activity.class);
+            else if(ObjectsHolder.getCurrentUser().getAccessLevel() == AccessLevel.Business)
+                i = new Intent(this, Business_activity.class);
+            else
+                i = new Intent(this,User_activity.class);
             startActivity(i);
         }
         else{

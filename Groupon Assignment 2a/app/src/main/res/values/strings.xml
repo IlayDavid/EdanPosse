@@ -11,4 +11,15 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_add_catalog_item">AddCatalogItem</string>
     <string name="title_activity_add_business">AddBusinessActivity</string>
+    <string name="title_activity_edit_catalog_item">EditCatalogItem</string>
+    <string name="title_activity_edit_business">EditBusiness</string>
+    <string name="title_activity_edit_user">EditUser</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_view_coupon">ViewCoupon</string>
+    <string name="title_activity_view_catalog_item">ViewCatalogItem</string>
+    <string name="title_activity_view_business">ViewBusiness</string>
+    <string name="title_activity_admin_activity">Admin_activity</string>
+    <string name="title_activity_business_">Business_Activity</string>
 </resources>

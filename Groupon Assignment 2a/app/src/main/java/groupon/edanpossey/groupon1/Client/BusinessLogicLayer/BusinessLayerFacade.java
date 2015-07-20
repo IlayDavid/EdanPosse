@@ -1,5 +1,7 @@
 package groupon.edanpossey.groupon1.Client.BusinessLogicLayer;
 
+import java.util.Collection;
+
 import groupon.edanpossey.groupon1.Entities.Business;
 import groupon.edanpossey.groupon1.Entities.CatalogItem;
 import groupon.edanpossey.groupon1.Entities.Order;
@@ -22,8 +24,6 @@ public interface BusinessLayerFacade {
 
     boolean newCatalogItem(CatalogItem catalogItem);
 
-    boolean approvePendingOrder(Order order);
-
     boolean approvePendingCatalogItem(CatalogItem catalogItem);
 
     boolean updateBusiness(Business oldBus, Business newBus);
@@ -37,6 +37,14 @@ public interface BusinessLayerFacade {
     boolean deleteCatalogItem(CatalogItem catalogItem);
 
     boolean rateCatalogItem(CatalogItem catalogItem, long rating);
+
+    boolean updateUser(User userOld, User userNew);
+
+    Collection<CatalogItem> getCatalogItemsByPreferences(String categories, String city, int radius, double longitude, double latitude);
+
+    Collection<Business> getBusinessesByPreference(String categories, String city, int radius, double longitude, double latitude);
+
+    Collection<CatalogItem> getPendingCatalogItems();
 
 
     //==============================================================================================

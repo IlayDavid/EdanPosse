@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="groupon.edanpossey.groupon1" >
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -25,14 +27,6 @@
             android:label="@string/title_activity_user_activity" >
         </activity>
         <activity
-            android:name=".CouponList_activity"
-            android:label="@string/title_activity_coupon_list_activity" >
-        </activity>
-        <activity
-            android:name=".view_orders_activity"
-            android:label="@string/title_activity_view_orders_activity" >
-        </activity>
-        <activity
             android:name=".Client.PresentationLayer.ViewOrders_activity"
             android:label="@string/title_activity_view_orders_activity" >
         </activity>
@@ -43,6 +37,38 @@
         <activity
             android:name=".Client.PresentationLayer.AddBusinessActivity"
             android:label="@string/title_activity_add_business" >
+        </activity>
+        <activity
+            android:name=".Client.PresentationLayer.EditCatalogItem"
+            android:label="@string/title_activity_edit_catalog_item" >
+        </activity>
+        <activity
+            android:name=".Client.PresentationLayer.EditBusiness"
+            android:label="@string/title_activity_edit_business" >
+        </activity>
+        <activity
+            android:name=".Client.PresentationLayer.EditUser"
+            android:label="@string/title_activity_edit_user" >
+        </activity>
+        <activity
+            android:name=".Client.PresentationLayer.ViewCoupon"
+            android:label="@string/title_activity_view_coupon" >
+        </activity>
+        <activity
+            android:name=".Client.PresentationLayer.ViewCatalogItem"
+            android:label="@string/title_activity_view_catalog_item" >
+        </activity>
+        <activity
+            android:name=".Client.PresentationLayer.ViewBusiness"
+            android:label="@string/title_activity_view_business" >
+        </activity>
+        <activity
+            android:name=".Client.PresentationLayer.Admin_activity"
+            android:label="@string/title_activity_admin_activity" >
+        </activity>
+        <activity
+            android:name=".Client.PresentationLayer.Business_activity"
+            android:label="@string/title_activity_business_" >
         </activity>
     </application>
 

@@ -1,5 +1,6 @@
 package groupon.edanpossey.groupon1.Entities;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -25,8 +26,8 @@ public class User {
         this.email = null;
         this.phoneNumber = null;
         this.accessLevel = null;
-        orders = null;
-        coupons = null;
+        this.orders = new ArrayList<Order>();
+        this.coupons = new ArrayList<Coupon>();
         business = null;
     }
 
@@ -37,8 +38,8 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.accessLevel = accessLevel;
         this.business = business;
-        this.orders = new LinkedList<Order>();
-        this.coupons = new LinkedList<Coupon>();
+        this.orders = new ArrayList<Order>();
+        this.coupons = new ArrayList<Coupon>();
     }
 
     //==============================================================================================

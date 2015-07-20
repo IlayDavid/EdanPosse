@@ -11,7 +11,8 @@
         android:id="@+id/NameText"
         android:layout_alignParentTop="true"
         android:layout_marginTop="83dp"
-        android:hint="User Name" />
+        android:hint="User Name"
+        android:text="admin" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -27,7 +28,8 @@
         android:layout_toLeftOf="@+id/SignUp_bt"
         android:layout_toStartOf="@+id/SignUp_bt"
         android:layout_alignRight="@+id/NameText"
-        android:layout_alignEnd="@+id/NameText" />
+        android:layout_alignEnd="@+id/NameText"
+        android:text="adminpass" />
 
     <Button
         style="?android:attr/buttonStyleSmall"

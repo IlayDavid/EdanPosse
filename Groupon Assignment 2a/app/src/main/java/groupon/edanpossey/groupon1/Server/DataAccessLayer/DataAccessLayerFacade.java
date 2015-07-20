@@ -23,6 +23,11 @@ public interface DataAccessLayerFacade {
     //endregion Database Connection
     //==============================================================================================
 
+    User getUser(String id);
+    Business getBusiness(String businessName);
+    CatalogItem getCatalogItem (long catalogNumber);
+    Coupon getCoupon (long couponCode);
+    Order getOrder (long orderCode);
     //==============================================================================================
     //region Insertion
     //==============================================================================================

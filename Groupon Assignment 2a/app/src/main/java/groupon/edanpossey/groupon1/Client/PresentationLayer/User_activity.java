@@ -1,53 +1,105 @@
 package groupon.edanpossey.groupon1.Client.PresentationLayer;
 
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import groupon.edanpossey.groupon1.R;
 
 
 public class User_activity extends ActionBarActivity {
-
-
-    Button viewCoupon;
-    Button viewOrders;
-    Button searchCoupon;
+    EditText categoriesText, radiusText, cityText;
+    Button viewOrders, searchCatalog, searchBusinesses, addCatalogItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_activity);
-        viewCoupon = (Button) findViewById(R.id.viewCoupons_bt);
         viewOrders = (Button) findViewById(R.id.viewOrders_bt);
-        searchCoupon = (Button) findViewById(R.id.searchCoupon_bt);
+        searchCatalog = (Button) findViewById(R.id.searchCatalogButton);
+        searchBusinesses = (Button) findViewById(R.id.searchBusinessesButton);
+        categoriesText = (EditText) findViewById(R.id.categoriesTextView);
+        radiusText = (EditText) findViewById(R.id.radiusTextView);
+        cityText = (EditText) findViewById(R.id.cityTextView);
+        addCatalogItem = (Button) findViewById(R.id.addCatalogItemButton);
     }
 
 
-    public void viewCoupons(View view) {
 
+    public void searchCatalog_ButtonClick(View view) {
+        String categories = categoriesText.getText().toString();
+        String city = cityText.getText().toString();
+        int radius;
+        boolean everythingOk = true;
+        if(TextUtils.isEmpty(radiusText.getText()))
+            radius = -1;
+        else{
+            try{
+                radius = Integer.parseInt(radiusText.getText().toString());
+                if(radius < 0)
+                    radiusText.setError("Positive numbers only");
+            }catch (Exception e){
+                radiusText.setError("Positive numbers only");
+                everythingOk = false;
+                radius = 0;
+            }
+        }
+        if(everythingOk){
+            Location location = ObjectsHolder.getLocationManager().getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+
+            ObjectsHolder.getBl().getCatalogItemsByPreferences(categories, city, radius, 0.0, 0.0);
+            Intent i = new Intent(this,ViewCatalogItems_activity.class);
+            startActivity(i);
+        }
+    }
+    public void searchBusinesses_ButtonClick(View view){
+        String categories = categoriesText.getText().toString();
+        String city = cityText.getText().toString();
+        int radius;
+        boolean everythingOk = true;
+        if(TextUtils.isEmpty(radiusText.getText()))
+            radius = -1;
+        else{
+            try{
+                radius = Integer.parseInt(radiusText.getText().toString());
+                if(radius < 0)
+                    radiusText.setError("Positive numbers only");
+            }catch (Exception e){
+                radiusText.setError("Positive numbers only");
+                everythingOk = false;
+                radius = 0;
+            }
+        }
+        if(everythingOk){
+            Location location = ObjectsHolder.getLocationManager().getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+
+            ObjectsHolder.getBl().getBusinessesByPreference(categories, city, radius, 0.0, 0.0);
+            Intent i = new Intent(this,ViewBusinesses_activity.class);
+            startActivity(i);
+        }
+
+    }
+
+    public void addCatalogItem_ButtonClick(View view){
+        Intent i = new Intent(this, AddCatalogItem.class);
+        startActivity(i);
+    }
+    public void viewOrders(View view) {
+        ObjectsHolder.setCurrentOrdersList(ObjectsHolder.getCurrentUser().getOrders());
 
         Intent i = new Intent(this,ViewOrders_activity.class);
         startActivity(i);
-
-    }
-
-
-    public void searchCoupon(View view) {
-
-        // do whatever
-
-    }
-
-
-    public void viewOrders(View view) {
-
-        //do whatever
-
     }
 
 
